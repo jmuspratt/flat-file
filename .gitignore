@@ -1,0 +1,10 @@
+/.env
+/.idea
+/.vscode
+/node_modules
+/vendor
+.eslintcache
+.stylelintcache
+.DS_Store
+www/albums
+!www/albums/.gitkeep

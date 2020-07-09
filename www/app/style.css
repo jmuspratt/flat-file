@@ -1,0 +1,43 @@
+body, body * {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+img,
+video {
+    max-width: 100%;
+    display: block;
+}
+
+.album__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns:  1fr;
+}
+
+@media (min-width:800px) {
+    .album__list {
+        grid-template-columns: repeat(3, 33.33%);
+        grid-gap: 20px;
+    }   
+}
+
+.album__asset {
+    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.album__img,
+.album__video {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}

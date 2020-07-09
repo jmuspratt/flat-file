@@ -1,0 +1,31 @@
+version: '3.5'
+services:
+  web:
+    image: nginx:latest
+    volumes:
+      - ./www:/www
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+    environment:
+      # Display name presented on http://ups.dock
+      UPS_DOCK_NAME: Flat File Photo
+      # Host name you want to use. Must end in `ups.dock`.
+      VIRTUAL_HOST: flatfile.ups.dock
+      # Allow http and https traffic (default will automatically redirect http -> https)
+      HTTPS_METHOD: noredirect
+      # Set this if your web service is running on a port other than 80
+      # VIRTUAL_PORT: 8080
+    networks:
+      - proxy
+      - default
+    links:
+      - php
+  php:
+    # image: php:7-fpm
+    build:
+      context: .
+    volumes:
+      - ./www:/www
+networks:
+  proxy:
+    name: ups-dock
+    external: true
