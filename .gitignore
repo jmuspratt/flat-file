@@ -6,5 +6,5 @@
 .eslintcache
 .stylelintcache
 .DS_Store
-www/albums
+www/albums/*
 !www/albums/.gitkeep
