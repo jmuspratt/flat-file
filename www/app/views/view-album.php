@@ -1,10 +1,16 @@
+<div class="view-album">
 <?php
 // output album assets
-    $album_title = $album;
-   $album_assets = get_album_assets($albums_path . '/' . $album);
+    $album_title = extract_album_title($album, $file_date_format, $date_output_format);
+    $album_date = extract_album_date($album, $file_date_format, $date_output_format);
+
+    $album_assets = get_album_assets($albums_path . '/' . $album);
 
     ?>
-    <h1><?php echo $album_title; ?></h1>
+
+    <h1 class="view-album__title"><?php echo $album_title; ?></h1>
+    <h2 class="view-album__date"><?php echo $album_date; ?></h2>
+
 
     <ul class="album__list">
     <?php
@@ -34,3 +40,5 @@
     </li>
 
 <?php endforeach; ?>
+
+</div>

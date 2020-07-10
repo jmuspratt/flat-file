@@ -1,7 +1,24 @@
 <?php
-function format_date($string) {
+
+function display_string($str) {
+    return ucwords(str_replace('-', ' ', $str));
+}
+
+function format_date($string, $file_date_format, $date_output_format) {
     $date = DateTime::createFromFormat($file_date_format, $string);
     return $date->format($date_output_format);
+}
+
+function extract_album_date($album_dir_string, $file_date_format, $date_output_format) {
+    $prefix_length = 8;
+    $date_string = substr($album_dir_string, 0, $prefix_length);
+    return format_date($date_string, $file_date_format, $date_output_format);
+}
+
+function extract_album_title($album_dir_string, $file_date_format) {
+    $prefix_length = 8;
+    $title =  substr($album_dir_string, $prefix_length);
+    return display_string($title);
 }
 
 function get_albums($path) {
@@ -86,7 +103,8 @@ function responsive_img_markup($img_path, $sizes)
     $file_dir = pathinfo($img_path)['dirname'];
     $file_ext = pathinfo($img_path)['extension'];
 
-    $markup = '<img lazyload';
+    $markup = '<img loading="lazy"';
+    $markup .= " sizes=\"(min-width: 800px) 45vw, 100vw\"";
 
     $i=0;
     foreach ( $sizes as $size ) :

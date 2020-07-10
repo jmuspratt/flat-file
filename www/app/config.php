@@ -10,4 +10,4 @@ $date_output_format = 'F j, Y'; // January 1, 2020
 $albums_path = "albums";
 
 
-$thumb_sizes = [ 900, 1500, 3000 ];
+$thumb_sizes = [ 900, 1800, 2700, 3600 ];

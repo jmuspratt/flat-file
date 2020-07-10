@@ -1,3 +1,7 @@
+:root {
+  --c-bg: #1B3246;
+  --c-base-text-color: #fff;
+}
 body, body * {
     box-sizing: border-box;
 }
@@ -5,6 +9,14 @@ body, body * {
 body {
     margin: 0;
     padding: 0;
+    background-color: var(--c-bg);
+    color: var(--c-base-text-color);
+}
+
+figure {
+  display: block;
+  margin: 0;
+  padding: 0;
 }
 
 img,
@@ -23,9 +35,9 @@ video {
 
 @media (min-width:800px) {
     .album__list {
-        grid-template-columns: repeat(3, 33.33%);
+        grid-template-columns: repeat(2, 50%);
         grid-gap: 20px;
-    }   
+    }
 }
 
 .album__asset {
@@ -40,4 +52,21 @@ video {
     display: block;
     max-width: 100%;
     max-height: 100%;
+    width: 100%;
+}
+
+
+/*  Album */
+
+.view-album {
+  padding: 50px;
+}
+.view-album__title {
+  color: white;
+  font: 400 28px / 1 georgia;
+
+}
+
+.view-album__date {
+  font: 400 12px / 1 georgia;
 }
