@@ -1,27 +1,44 @@
 <?php
 
-function display_string($str) {
+function get_file_type($asset_ext)
+{
+    $val = null;
+    if (in_array($asset_ext, ['mp4', 'mov', 'ogv'])) {
+        $val = 'video';
+    }
+    if (in_array($asset_ext, ['jpg', 'png', 'gif'])) {
+        $val = 'image';
+    }
+    return $val;
+}
+
+function display_string($str)
+{
     return ucwords(str_replace('-', ' ', $str));
 }
 
-function format_date($string, $file_date_format, $date_output_format) {
+function format_date($string, $file_date_format, $date_output_format)
+{
     $date = DateTime::createFromFormat($file_date_format, $string);
     return $date->format($date_output_format);
 }
 
-function extract_album_date($album_dir_string, $file_date_format, $date_output_format) {
+function extract_album_date($album_dir_string, $file_date_format, $date_output_format)
+{
     $prefix_length = 8;
     $date_string = substr($album_dir_string, 0, $prefix_length);
     return format_date($date_string, $file_date_format, $date_output_format);
 }
 
-function extract_album_title($album_dir_string, $file_date_format) {
+function extract_album_title($album_dir_string, $file_date_format)
+{
     $prefix_length = 8;
     $title =  substr($album_dir_string, $prefix_length);
     return display_string($title);
 }
 
-function get_albums($path) {
+function get_albums($path)
+{
     // echo "path is " . $path;
     foreach (glob($path . "/*", GLOB_ONLYDIR) as $dir_full_path) {
         $exclude = ["app"];
@@ -36,7 +53,8 @@ function get_albums($path) {
 
 
 // https://davidwalsh.name/create-image-thumbnail-php
-function make_thumb($src, $dest, $desired_width) {
+function make_thumb($src, $dest, $desired_width)
+{
 
     // echo ("-----------");
     // echo ("src: $src <br />");
@@ -62,7 +80,8 @@ function make_thumb($src, $dest, $desired_width) {
 }
 
 
-function get_album_assets($album_path) {
+function get_album_assets($album_path)
+{
     foreach (glob($album_path . "/*") as $asset) {
         if (!is_dir($asset)) {
             $assets[] = $asset;
@@ -128,4 +147,5 @@ function responsive_img_markup($img_path, $sizes)
 
     return $markup;
 }
+
 

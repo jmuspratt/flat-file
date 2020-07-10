@@ -20,23 +20,29 @@
 
         ?>
     <li class="album__item">
+    <?php $file_type = get_file_type($asset_ext);
+    if ($file_type):
+        ?>
         <a href="<?php echo $asset_path; ?>" class="album__asset-link js-lightbox-trigger">
-        <?php if (in_array($asset_ext, ['mp4', 'mov', 'ogv'])) : ?>
+        <?php if ($file_type === 'video') : ?>
             <div class="album__asset album__asset--video">
                 <video class="album__video" autoplay loop muted playsinline>
                     <source  src="<?php echo $asset_path; ?>" />
                 </video>
             </div>
-            <?php
-                else :
+            <?php elseif ($file_type === 'image') :
                     // generate the thumbs for this image
                     generate_thumbs($asset_path, $thumb_sizes);
             ?>
                 <figure class="album__asset album__asset--figure">
                     <?php echo responsive_img_markup($asset_path, $thumb_sizes) ?>
                 </figure>
-        <?php endif; ?>
+            <?php endif; ?>
         </a>
+        <?php else : ?>
+            <div class="album__asset-error">Error: <br /><?php echo $asset_path; ?></div>
+    <?php endif; ?>
+
     </li>
 
 <?php endforeach; ?>
