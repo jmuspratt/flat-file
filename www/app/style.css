@@ -29,48 +29,107 @@ video {
     display: block;
 }
 
-.album__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns:  1fr;
+
+
+/* Shared */
+
+.view {
+  padding: 15px;
+}
+@media (min-width: 800px) {
+  .view {
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 1000px;
+  }
 }
 
-@media (min-width:800px) {
-    .album__list {
-        grid-template-columns: repeat(2, 50%);
-        grid-gap: 20px;
-    }
+
+/* Index */
+
+.view-index__title {
+  font: 400 45px / 1 georgia;
 }
 
-.album__asset {
-    display: block;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.view-index__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.album__img,
-.album__video {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-    width: 100%;
+.view-index__item {
+  border-bottom: 1px solid rgba(255,255,255, 0.5);
+  width: 100%;
+}
+
+.view-index__item:first-child {
+  border-top: 1px solid rgba(255,255,255, 0.5);
+}
+
+.view-index__item-link {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  text-decoration: none;
+}
+
+.view-index__album-title {
+  font: 400 24px / 1 georgia;
+
+}
+
+.view-index__album-date {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.7;
+  margin-left: 20px;
 }
 
 
 /*  Album */
-
-.view-album {
-  padding: 50px;
-}
 .view-album__title {
   color: white;
-  font: 400 28px / 1 georgia;
-
+  font: 400 48px / 1 georgia;
+  margin: 0 0 10px;
 }
 
 .view-album__date {
-  font: 400 12px / 1 georgia;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 30px;
+  opacity: 0.7;
 }
+
+.view-album__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns:  1fr;
+}
+
+@media (min-width:800px) {
+  .view-album__list {
+      grid-template-columns: repeat(2, 50%);
+      grid-gap: 20px;
+  }
+}
+
+.view-album__asset {
+  align-items: center;
+  background: white;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.view-album__img,
+.view-album__video {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+}
+
+
