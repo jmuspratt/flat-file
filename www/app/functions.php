@@ -1,5 +1,6 @@
 <?php
 
+
 function get_file_type($asset_ext)
 {
     $val = null;
@@ -14,6 +15,18 @@ function get_file_type($asset_ext)
     }
     return $val;
 }
+
+function text_file_contents($text_file_path)
+{
+    $contents = '';
+    $fh = fopen($text_file_path, 'r');
+    while ($line = fgets($fh)) :
+        $contents .= $line . '<br />';
+    endwhile;
+    fclose($fh);
+    return $contents;
+}
+
 
 function display_string($str)
 {
@@ -123,7 +136,10 @@ function responsive_img_markup($img_path, $sizes)
 {
 
     list($width, $height) = getimagesize($img_path);
-    $ratio = $width / $height;
+    if ($width && $height) :
+        $ratio = $height / $width;
+        $presize_style = 'padding-top: ' . $ratio * 100 . '%';
+    endif;
 
     $is_portrait = $ratio < 1;
     $is_square = $ratio == 1;
@@ -143,7 +159,13 @@ function responsive_img_markup($img_path, $sizes)
     $file_dir = pathinfo($img_path)['dirname'];
     $file_ext = pathinfo($img_path)['extension'];
 
-    $markup = "<img loading=\"lazy\" data-ratio=\"$ratio\" class=\"$classes\"" ;
+    $markup = '';
+
+    if ($presize_style) :
+        $markup .= "<div class=\"presize\" style=\"$presize_style\">";
+    endif;
+
+    $markup .= "<img loading=\"lazy\" data-ratio=\"$ratio\" class=\"$classes\"" ;
     // $markup .= " sizes=\"(min-width: 800px) 45vw, 100vw\"";
     $markup .= " sizes=\"100vw\"";
 
@@ -166,6 +188,10 @@ function responsive_img_markup($img_path, $sizes)
     endforeach;
 
     $markup .= '" />';
+
+    if ($presize_style) :
+        $markup .= '</div>';
+    endif;
 
     return $markup;
 }

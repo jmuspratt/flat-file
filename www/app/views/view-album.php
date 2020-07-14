@@ -8,6 +8,7 @@
     ?>
 
     <header class="view-album__header">
+        <p class="view-album__back"><a class="view-album__back-link btn" href="<?php echo $root_url; ?>">Back</a></p>
         <h1 class="view-album__title"><?php echo $album_title; ?></h1>
         <h2 class="view-album__date"><?php echo $album_date; ?></h2>
     </header>
@@ -42,17 +43,16 @@
             </a>
 
             <?php elseif ($file_type === 'text') :
-                $fh = fopen($asset_path, 'r');
-                while ($line = fgets($fh)) : ?>
+                $contents = text_file_contents($asset_path);
+                if ($contents) : ?>
                 <div class="view-album__asset view-album__asset--text">
                     <div class="title-card">
-                        <h2 class="title-card__head"><?php echo($line); ?></h2>
+                        <div class="title-card__head">
+                            <?php echo $contents; ?>
+                        </div>
                     </div>
                 </div>
-                    <?php
-                    endwhile;
-                    fclose($fh);
-                    ?>
+                <?php endif; ?>
             <?php endif; ?>
             <?php else : ?>
             <!-- Error, uncrecognized file type: <?php echo $asset_path; ?> -->

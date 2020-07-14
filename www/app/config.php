@@ -1,6 +1,6 @@
 <?php
 
-$root_url = "https://flatfile.ups-dock";
+$root_url = "https://flatfile.ups.dock";
 $root_path = "www/";
 
 // Date Formats
