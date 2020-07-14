@@ -9,6 +9,9 @@ function get_file_type($asset_ext)
     if (in_array($asset_ext, ['jpg', 'png', 'gif'])) {
         $val = 'image';
     }
+    if (in_array($asset_ext, ['txt'])) {
+        $val = 'text';
+    }
     return $val;
 }
 
@@ -118,15 +121,34 @@ function generate_thumbs($src_path, $sizes)
 
 function responsive_img_markup($img_path, $sizes)
 {
+
+    list($width, $height) = getimagesize($img_path);
+    $ratio = $width / $height;
+
+    $is_portrait = $ratio < 1;
+    $is_square = $ratio == 1;
+
+    $classes = '';
+
+    if ($is_portrait) :
+        $classes .= ' shape-portrait';
+    elseif ($is_square) :
+        $classes .= ' shape-square';
+    else :
+        $classes .= ' shape-landscape';
+    endif;
+
+
     $file_name = pathinfo($img_path)['filename'];
     $file_dir = pathinfo($img_path)['dirname'];
     $file_ext = pathinfo($img_path)['extension'];
 
-    $markup = '<img loading="lazy"';
-    $markup .= " sizes=\"(min-width: 800px) 45vw, 100vw\"";
+    $markup = "<img loading=\"lazy\" data-ratio=\"$ratio\" class=\"$classes\"" ;
+    // $markup .= " sizes=\"(min-width: 800px) 45vw, 100vw\"";
+    $markup .= " sizes=\"100vw\"";
 
     $i=0;
-    foreach ( $sizes as $size ) :
+    foreach ($sizes as $size) :
         $thumb_path = $file_dir . '/thumbs/' . $file_name . '__' . $size . '.' . $file_ext;
 
         if ($i===0) :
