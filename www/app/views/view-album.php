@@ -22,38 +22,15 @@
             ?>
 
             <div class="view-album__item view-album__item--<?php echo $file_type; ?>">
-            <?php if ($file_type) : ?>
-                <?php if ($file_type === 'video') : ?>
-            <a href="<?php echo $asset_path; ?>" class="view-album__asset-link js-lightbox-trigger">
-                <div class="view-album__asset view-album__asset--video">
-                    <video class="view-album__video" autoplay loop muted playsinline>
-                        <source  src="<?php echo $asset_path; ?>" />
-                    </video>
-                </div>
-            </a>
-
-            <?php elseif ($file_type === 'image') :
-                // generate the thumbs for this image
-                generate_thumbs($asset_path, $thumb_sizes);
+            <?php if ($file_type) :
+                if ($file_type === 'video') :
+                    include 'asset-video.php';
+                elseif ($file_type === 'image') :
+                    include 'asset-image.php';
+                elseif ($file_type === 'text') :
+                    include 'asset-text.php';
+                endif;
             ?>
-            <a href="<?php echo $asset_path; ?>" class="view-album__asset-link js-lightbox-trigger">
-                <figure class="view-album__asset album__asset--figure">
-                    <?php echo responsive_img_markup($asset_path, $thumb_sizes) ?>
-                </figure>
-            </a>
-
-            <?php elseif ($file_type === 'text') :
-                $contents = text_file_contents($asset_path);
-                if ($contents) : ?>
-                <div class="view-album__asset view-album__asset--text">
-                    <div class="title-card">
-                        <div class="title-card__head">
-                            <?php echo $contents; ?>
-                        </div>
-                    </div>
-                </div>
-                <?php endif; ?>
-            <?php endif; ?>
             <?php else : ?>
             <!-- Error, uncrecognized file type: <?php echo $asset_path; ?> -->
             <?php endif; ?>
