@@ -1,7 +1,6 @@
 <?php
 
 $root_url = "https://flatfile.ups.dock";
-$root_path = "www/";
 
 // Date Formats
 $file_date_format = 'Ymd'; //20200131
