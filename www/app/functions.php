@@ -69,6 +69,7 @@ function get_albums($path)
 
 // https://davidwalsh.name/create-image-thumbnail-php
 function make_thumb($src, $dest, $desired_width)
+{
     $source_image = imagecreatefromjpeg($src);
     $width = imagesx($source_image);
     $height = imagesy($source_image);
