@@ -1,10 +1,8 @@
 <div class="view-album view">
     <?php
-        // output album assets
-        $album_title = extract_album_title($album, $file_date_format, $date_output_format);
-        $album_date = extract_album_date($album, $file_date_format, $date_output_format);
-        $album_assets = get_album_assets($albums_path . '/' . $album);
-
+        $album_title = extract_album_title($album_name, $file_date_format, $date_output_format);
+        $album_date = extract_album_date($album_name, $file_date_format, $date_output_format);
+        $album_assets = get_album_assets($albums_path . '/' . $album_name);
     ?>
 
     <header class="view-album__header">
@@ -15,7 +13,7 @@
 
     <section class="view-album__content">
         <?php
-        foreach ($album_assets as $asset)  :
+        foreach ($album_assets as $asset) :
             $asset_path =  $asset;
             $asset_ext = strtolower(pathinfo($asset_path, PATHINFO_EXTENSION));
             $file_type = get_file_type($asset_ext);
@@ -30,9 +28,9 @@
                 elseif ($file_type === 'text') :
                     include 'asset-text.php';
                 endif;
-            ?>
+                ?>
             <?php else : ?>
-            <!-- Error, uncrecognized file type: <?php echo $asset_path; ?> -->
+            <!-- Error, unrecognized file extension: <?php echo $asset_path; ?> -->
             <?php endif; ?>
         </div>
 

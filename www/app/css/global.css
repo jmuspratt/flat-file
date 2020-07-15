@@ -1,17 +1,13 @@
-
 :root {
   --c-bg: #071827;
   --c-base-text-color: #fff;
   --c-light-white: rgba(255, 255, 255, 0.2);
-
   --sidebar-width: 375px;
   --site-padding: 30px;
   --bp-sidebar: 900px;
-
 }
 
 html {
-  scroll-snap-type: y mandatory;
   scroll-padding: var(--site-padding);
 }
 

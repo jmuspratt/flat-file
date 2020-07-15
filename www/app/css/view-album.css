@@ -40,13 +40,11 @@
 
 .view-album__item {
   margin-bottom: var(--site-padding);
-  scroll-snap-align: start;
 }
 
 .view-album__item--text {
   padding: 0 var(--site-padding);
 }
-
 
 .view-album__asset-link {
   display: block;
@@ -69,7 +67,6 @@
   color: white;
   font: 21px/ 1.375 georgia;
 }
-
 
 .view-album__img,
 .view-album__video {

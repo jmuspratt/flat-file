@@ -14,9 +14,9 @@ error_reporting(E_ALL);
 include 'app/config.php';
 include 'app/functions.php';
 
-$album = isset($_GET['a']) ? $_GET['a'] : null;
+$album_name = isset($_GET['a']) ? $_GET['a'] : null;
 
-if ($album) :
+if ($album_name) :
         include 'app/views/view-album.php';
 else :
         include 'app/views/view-index.php';
