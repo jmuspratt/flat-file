@@ -16,7 +16,7 @@ function get_file_type($asset_ext)
     return $val;
 }
 
-function text_file_contents($text_file_path)
+function get_file_contents($text_file_path)
 {
     $contents = '';
     $fh = fopen($text_file_path, 'r');
@@ -28,7 +28,7 @@ function text_file_contents($text_file_path)
 }
 
 
-function display_string($str)
+function string_to_title($str)
 {
     return ucwords(str_replace('-', ' ', $str));
 }
@@ -50,12 +50,11 @@ function extract_album_title($album_dir_string, $file_date_format)
 {
     $prefix_length = 8;
     $title =  substr($album_dir_string, $prefix_length);
-    return display_string($title);
+    return string_to_title($title);
 }
 
 function get_albums($path)
 {
-    // echo "path is " . $path;
     foreach (glob($path . "/*", GLOB_ONLYDIR) as $dir_full_path) {
         $exclude = ["app"];
 
@@ -70,14 +69,6 @@ function get_albums($path)
 
 // https://davidwalsh.name/create-image-thumbnail-php
 function make_thumb($src, $dest, $desired_width)
-{
-
-    // echo ("-----------");
-    // echo ("src: $src <br />");
-    // echo ("dest: $dest<br />");
-    // echo ("-----------");
-
-    /* read the source image */
     $source_image = imagecreatefromjpeg($src);
     $width = imagesx($source_image);
     $height = imagesy($source_image);
@@ -109,12 +100,9 @@ function get_album_assets($album_path)
 
 function generate_thumbs($src_path, $sizes)
 {
-
-
     $file_dir = pathinfo($src_path)['dirname'];
     $file_name = pathinfo($src_path)['filename'];
     $file_ext = pathinfo($src_path)['extension'];
-    // echo ("extension is ". $file_ext);
 
     // Create the thumbs directory if it doesn't exist
     $thumb_dir = $file_dir . '/' . 'thumbs';
@@ -153,7 +141,6 @@ function responsive_img_markup($img_path, $sizes)
     else :
         $classes .= ' shape-landscape';
     endif;
-
 
     $file_name = pathinfo($img_path)['filename'];
     $file_dir = pathinfo($img_path)['dirname'];
