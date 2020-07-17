@@ -68,6 +68,35 @@ function get_albums($path)
 }
 
 
+function generate_video($src_path)
+{
+
+    $file_dir = pathinfo($src_path)['dirname'];
+    $file_name = pathinfo($src_path)['filename'];
+    $file_ext = pathinfo($src_path)['extension'];
+
+    // Create the /videos sub-directory if it doesn't exist
+    $videos_dir = $file_dir . '/' . 'videos';
+    if (!file_exists($videos_dir)) :
+        mkdir($videos_dir, 0777, true);
+    endif;
+
+    $dest_path = $file_dir . '/videos/' . $file_name . '__720' . '.mp4';
+
+    // Generate the 720p mp4 if it doesn't exist
+    if (! file_exists($dest_path) ) :
+        // check for FFMPEG and run it via the shell
+        if (! empty(trim(shell_exec('which ffmpeg')))) :
+            $shell_cmd = "ffmpeg -i $src_path $dest_path";
+            // echo("executing <code>$shell_cmd</code><br />");
+            // var_dump(shell_exec("$shell_cmd  2>&1"));
+            shell_exec($shell_cmd);
+
+        else :
+            echo ("Sorry, ffmpeg not installed");
+        endif;
+    endif;
+}
 
 // https://davidwalsh.name/create-image-thumbnail-php
 function make_thumb($src, $dest, $desired_width)
@@ -121,6 +150,18 @@ function generate_thumbs($src_path, $sizes)
             make_thumb($src_path, $output_path, $size);
         endif;
     }
+}
+
+function video_src($video_path)
+{
+    $file_dir = pathinfo($video_path)['dirname'];
+    $file_name = pathinfo($video_path)['filename'];
+    $file_ext = pathinfo($video_path)['extension'];
+
+    $resized_path = $file_dir . '/videos/' . $file_name . '__720' . '.mp4';
+
+    return $resized_path;
+
 }
 
 function responsive_img_markup($img_path, $sizes)
