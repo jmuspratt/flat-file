@@ -63,8 +63,10 @@ function get_albums($path)
             $dir_paths[] = $dir_name;
         }
     }
+    rsort($dir_paths);
     return $dir_paths;
 }
+
 
 
 // https://davidwalsh.name/create-image-thumbnail-php
