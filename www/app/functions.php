@@ -70,7 +70,6 @@ function get_albums($path)
 
 function generate_video($src_path)
 {
-
     $file_dir = pathinfo($src_path)['dirname'];
     $file_name = pathinfo($src_path)['filename'];
     $file_ext = pathinfo($src_path)['extension'];
@@ -84,18 +83,33 @@ function generate_video($src_path)
     $dest_path = $file_dir . '/videos/' . $file_name . '__720' . '.mp4';
 
     // Generate the 720p mp4 if it doesn't exist
-    if (! file_exists($dest_path) ) :
-        // check for FFMPEG and run it via the shell
-        if (! empty(trim(shell_exec('which ffmpeg')))) :
-            $shell_cmd = "ffmpeg -i $src_path $dest_path";
-            // echo("executing <code>$shell_cmd</code><br />");
-            // var_dump(shell_exec("$shell_cmd  2>&1"));
-            shell_exec($shell_cmd);
+    if (! file_exists($dest_path)) :
+        $ffmpeg = \FFMpeg\FFMpeg::create([
+            'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe'
+        ]);
+        if ($ffmpeg) :
+            $video = $ffmpeg->open($src_path);
+            // Avoid an Uncaught Exception error by passing in 'libmp3lame', 'libx264':
+            // https://github.com/PHP-FFMpeg/PHP-FFMpeg/issues/639#issuecomment-493671318
+            $format= new \FFMpeg\Format\Video\X264('libmp3lame', 'libx264');
 
+            // $format->on('progress', function ($video, $format, $percentage) {
+            //     echo "$percentage % transcoded";
+            // });
+
+            // $format
+            //     ->setKiloBitrate(1000)
+            //     ->setAudioChannels(2)
+            //     ->setAudioKiloBitrate(256);
+
+            $video->filters()->resize(new FFMpeg\Coordinate\Dimension(1280, 720))->synchronize();
+            $video->save($format, $dest_path);
         else :
-            echo ("Sorry, ffmpeg not installed");
+            echo ("Sorry, ffmpeg or PHP-FFMPEG not installed");
         endif;
     endif;
+
 }
 
 // https://davidwalsh.name/create-image-thumbnail-php

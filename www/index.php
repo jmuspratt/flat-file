@@ -10,7 +10,7 @@
 
 <?php
 error_reporting(E_ALL);
-
+require 'vendor/autoload.php';
 include 'app/config.php';
 include 'app/functions.php';
 
