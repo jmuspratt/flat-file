@@ -90,23 +90,18 @@ function generate_video($src_path)
         ]);
         if ($ffmpeg) :
             $video = $ffmpeg->open($src_path);
-            // Avoid an Uncaught Exception error by passing in 'libmp3lame', 'libx264':
+            // Avoid an Uncaught Exception error by passing in codecs:
             // https://github.com/PHP-FFMpeg/PHP-FFMpeg/issues/639#issuecomment-493671318
             $format= new \FFMpeg\Format\Video\X264('aac', 'libx264');
-
-            // $format->on('progress', function ($video, $format, $percentage) {
-            //     echo "$percentage % transcoded";
-            // });
 
             $format
                 ->setKiloBitrate(1000)
                 ->setAudioChannels(2)
                 ->setAudioKiloBitrate(256);
-
             $video->filters()->resize(new FFMpeg\Coordinate\Dimension(1280, 720))->synchronize();
             $video->save($format, $dest_path);
         else :
-            echo ("Sorry, ffmpeg or PHP-FFMPEG not installed");
+            echo ("FFMPEG or PHP-FFMPEG not installed");
         endif;
     endif;
 
