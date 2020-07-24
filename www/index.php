@@ -9,12 +9,17 @@
     <body>
 
 <?php
-error_reporting(E_ALL);
+
+// ini_set('display_errors', '1');
+// ini_set('display_startup_errors', '1');
+// error_reporting(E_ALL);
+
 require 'vendor/autoload.php';
 include 'app/config.php';
 include 'app/functions.php';
 
 $album_name = isset($_GET['a']) ? $_GET['a'] : null;
+
 
 if ($album_name) :
         include 'app/views/view-album.php';
