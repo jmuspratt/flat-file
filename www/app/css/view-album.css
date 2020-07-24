@@ -56,7 +56,6 @@
 }
 
 .title-card {
-  padding-top: var(--site-padding);
   background: var(--c-bg);
   width: 100%;
 }
