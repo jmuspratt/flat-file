@@ -118,7 +118,6 @@ function generate_video($src_path, $albums_path_processed)
 // https://davidwalsh.name/create-image-thumbnail-php
 function make_thumb($src, $dest, $desired_width)
 {
-    echo ('making thumb for ' . $src . '<br />');
     $source_image = imagecreatefromjpeg($src);
     $width = imagesx($source_image);
     $height = imagesy($source_image);
