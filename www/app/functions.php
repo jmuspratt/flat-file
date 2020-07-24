@@ -206,8 +206,7 @@ function responsive_img_markup($img_path, $sizes)
     endif;
 
     $markup .= "<img loading=\"lazy\" data-ratio=\"$ratio\" class=\"$classes\"" ;
-    // $markup .= " sizes=\"(min-width: 800px) 45vw, 100vw\"";
-    $markup .= " sizes=\"100vw\"";
+    $markup .= " sizes=\"(min-width: 960px) calc((100vw - 350px) / 2), (min-width: 1100px) calc(100vw - 350px), 100vw\"";
 
     $i=0;
     foreach ($sizes as $size) :
