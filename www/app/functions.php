@@ -33,23 +33,30 @@ function string_to_title($str)
     return ucwords(str_replace('-', ' ', $str));
 }
 
-function format_date($string, $file_date_format, $date_output_format)
+
+function date_format_length($format)
 {
-    $date = DateTime::createFromFormat($file_date_format, $string);
-    return $date->format($date_output_format);
+    $example_output = format_date("2020-01-01", 'Y-m-d', $format);
+    return mb_strlen($example_output);
 }
 
-function extract_album_date($album_dir_string, $file_date_format, $date_output_format)
+function format_date($string, $input_date_format, $output_date_format)
 {
-    $prefix_length = 8;
+    $date = DateTime::createFromFormat($input_date_format, $string);
+    return $date->format($output_date_format);
+}
+
+function extract_date($album_dir_string, $input_date_format, $output_date_format)
+{
+    $prefix_length = date_format_length($input_date_format);
     $date_string = substr($album_dir_string, 0, $prefix_length);
-    return format_date($date_string, $file_date_format, $date_output_format);
+    return format_date($date_string, $input_date_format, $output_date_format);
 }
 
-function extract_album_title($album_dir_string, $file_date_format)
+function extract_title($album_dir_string, $input_date_format)
 {
-    $prefix_length = 8;
-    $title =  substr($album_dir_string, $prefix_length);
+    $prefix_length = date_format_length($input_date_format);
+    $title = substr($album_dir_string, $prefix_length);
     return string_to_title($title);
 }
 

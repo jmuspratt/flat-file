@@ -16,6 +16,7 @@ include 'app/functions.php';
 
 $album_name = isset($_GET['a']) ? $_GET['a'] : null;
 
+
 if ($album_name) :
         include 'app/views/view-album.php';
 else :
