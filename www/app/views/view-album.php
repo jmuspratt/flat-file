@@ -6,34 +6,55 @@
     ?>
 
     <header class="view-album__header">
-        <p class="view-album__back"><a class="view-album__back-link btn" href="<?php echo $root_url; ?>">Back</a></p>
+        <p class="view-album__back"><a class="view-album__back-link" href="<?php echo $root_url; ?>">Back to albums</a></p>
         <h1 class="view-album__title"><?php echo $album_title; ?></h1>
         <h2 class="view-album__date"><?php echo $album_date; ?></h2>
     </header>
 
     <section class="view-album__content">
         <?php
-        foreach ($album_assets as $asset) :
-            $asset_path =  $asset;
+        $item_count = sizeof($album_assets);
+        $i = 1;
+        foreach ($album_assets as $asset_path) :
+            $first = $i == 1;
+            $last = $item_count - $i == 0;
             $asset_ext = strtolower(pathinfo($asset_path, PATHINFO_EXTENSION));
             $file_type = get_file_type($asset_ext);
             ?>
+            <?php if ($file_type) : ?>
+                <?php if ($first && in_array($file_type, array('image', 'video'))) : ?>
+                    <section class="view-album__grid">
+                <?php endif; ?>
 
-            <div class="view-album__item view-album__item--<?php echo $file_type; ?>">
-            <?php if ($file_type) :
-                if ($file_type === 'video') :
-                    include 'asset-video.php';
-                elseif ($file_type === 'image') :
-                    include 'asset-image.php';
-                elseif ($file_type === 'text') :
-                    include 'asset-text.php';
-                endif;
-                ?>
+                <?php
+                if ($file_type === 'video') : ?>
+                    <div class="view-album__item view-album__item--<?php echo $file_type; ?>">
+                        <?php include 'asset-video.php'; ?>
+                    </div>
+                <?php elseif ($file_type === 'image') : ?>
+                    <div class="view-album__item view-album__item--<?php echo $file_type; ?>">
+                        <?php include 'asset-image.php'; ?>
+                    </div>
+                <?php elseif ($file_type === 'text') : ?>
+                    <?php if (! $first) : ?>
+                    </section> <!-- grid -->
+                    <?php endif; ?>
+                    <header class="view-album__section-heading">
+                        <?php include 'asset-text.php'; ?>
+                    </header>
+                    <?php if (! $last) : ?>
+                    <section class="view-album__grid">
+                    <?php endif; ?>
+                <?php endif; ?>
+
+                <?php if ($last) : ?>
+                    </section> <!-- grid -->
+                <?php endif; ?>
+
             <?php else : ?>
             <!-- Error, unrecognized file extension: <?php echo $asset_path; ?> -->
             <?php endif; ?>
-        </div>
-
+            <?php $i = $i+1; ?>
         <?php endforeach; ?>
     </section>
 
