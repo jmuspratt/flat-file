@@ -84,9 +84,8 @@
 @media ( min-width: 960px) {
 
   .view-album__content {
-    padding-top: var(--site-padding);
     margin-left: var(--sidebar-width);
-    padding-right: var(--site-padding);
+    padding: var(--site-padding) var(--site-padding) 400px 0;
   }
 
   .view-album__header {

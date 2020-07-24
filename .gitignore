@@ -7,4 +7,6 @@
 .stylelintcache
 .DS_Store
 www/albums/*
+www/albums-processed/*
 !www/albums/.gitkeep
+!www/albums-processed/.gitkeep

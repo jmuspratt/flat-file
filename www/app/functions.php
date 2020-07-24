@@ -75,19 +75,20 @@ function get_albums($path)
 }
 
 
-function generate_video($src_path)
+function generate_video($src_path, $albums_path_processed)
 {
     $file_dir = pathinfo($src_path)['dirname'];
     $file_name = pathinfo($src_path)['filename'];
     $file_ext = pathinfo($src_path)['extension'];
 
-    // Create the /videos sub-directory if it doesn't exist
-    $videos_dir = $file_dir . '/' . 'videos';
-    if (!file_exists($videos_dir)) :
-        mkdir($videos_dir, 0777, true);
+    // Create album sub-directory if it doesn't exist
+    $new_album_dir = basename($file_dir);
+    $cache_dir = $albums_path_processed . '/' . $new_album_dir;
+    if (!file_exists($cache_dir)) :
+        mkdir($cache_dir, 0777, true);
     endif;
 
-    $dest_path = $file_dir . '/videos/' . $file_name . '__720' . '.mp4';
+    $dest_path = $cache_dir . '/' . $file_name . '__720.mp4';
 
     // Generate the 720p mp4 if it doesn't exist
     if (! file_exists($dest_path)) :
@@ -99,7 +100,7 @@ function generate_video($src_path)
             $video = $ffmpeg->open($src_path);
             // Avoid an Uncaught Exception error by passing in codecs:
             // https://github.com/PHP-FFMpeg/PHP-FFMpeg/issues/639#issuecomment-493671318
-            $format= new \FFMpeg\Format\Video\X264('aac', 'libx264');
+            $format = new \FFMpeg\Format\Video\X264('aac', 'libx264');
 
             $format
                 ->setKiloBitrate(1000)
@@ -117,6 +118,7 @@ function generate_video($src_path)
 // https://davidwalsh.name/create-image-thumbnail-php
 function make_thumb($src, $dest, $desired_width)
 {
+    echo ('making thumb for ' . $src . '<br />');
     $source_image = imagecreatefromjpeg($src);
     $width = imagesx($source_image);
     $height = imagesy($source_image);
@@ -146,21 +148,23 @@ function get_album_assets($album_path)
     return $assets;
 }
 
-function generate_thumbs($src_path, $sizes)
+function generate_thumbs($src_path, $albums_path_processed, $sizes)
 {
     $file_dir = pathinfo($src_path)['dirname'];
     $file_name = pathinfo($src_path)['filename'];
     $file_ext = pathinfo($src_path)['extension'];
 
+    $new_album_dir = basename($file_dir);
     // Create the thumbs directory if it doesn't exist
-    $thumb_dir = $file_dir . '/' . 'thumbs';
-    if (!file_exists($thumb_dir)) :
-        mkdir($thumb_dir, 0777, true);
+    $cache_dir = $albums_path_processed . '/' . $new_album_dir;
+    if (!file_exists($cache_dir)) :
+        mkdir($cache_dir, 0777, true);
     endif;
+
 
     // For each size, generate the thumb unless it exists
     foreach ($sizes as $size) {
-        $output_path = $file_dir . '/thumbs/' . $file_name . '__' . $size . '.' . $file_ext;
+        $output_path = $cache_dir. '/' . $file_name . '__' . $size . '.' . $file_ext;
 
         if (!file_exists($output_path)) :
             make_thumb($src_path, $output_path, $size);
@@ -168,19 +172,20 @@ function generate_thumbs($src_path, $sizes)
     }
 }
 
-function video_src($video_path)
+function video_src($video_path, $albums_path_processed)
 {
-    $file_dir = pathinfo($video_path)['dirname'];
     $file_name = pathinfo($video_path)['filename'];
+    $file_dir = pathinfo($video_path)['dirname'];
     $file_ext = pathinfo($video_path)['extension'];
 
-    $resized_path = $file_dir . '/videos/' . $file_name . '__720' . '.mp4';
+    $cache_dir = $albums_path_processed . '/' . basename($file_dir);
+
+    $resized_path = $cache_dir. '/'. $file_name . '__720.mp4';
 
     return $resized_path;
-
 }
 
-function responsive_img_markup($img_path, $sizes)
+function responsive_img_markup($img_path, $sizes, $albums_path_processed)
 {
 
     list($width, $height) = getimagesize($img_path);
@@ -206,6 +211,8 @@ function responsive_img_markup($img_path, $sizes)
     $file_dir = pathinfo($img_path)['dirname'];
     $file_ext = pathinfo($img_path)['extension'];
 
+    $cache_dir = $albums_path_processed . '/' . basename($file_dir) . '/';
+
     $markup = '';
 
     if ($presize_style) :
@@ -217,7 +224,7 @@ function responsive_img_markup($img_path, $sizes)
 
     $i=0;
     foreach ($sizes as $size) :
-        $thumb_path = $file_dir . '/thumbs/' . $file_name . '__' . $size . '.' . $file_ext;
+        $thumb_path = $cache_dir . $file_name . '__' . $size . '.' . $file_ext;
 
         if ($i===0) :
             $markup .= " src=\"$thumb_path\"";
