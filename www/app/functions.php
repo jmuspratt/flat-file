@@ -188,11 +188,11 @@ function responsive_img_markup($img_path, $sizes)
     $classes = '';
 
     if ($is_portrait) :
-        $classes .= ' shape-portrait';
+        $classes .= ' shape-landscape';
     elseif ($is_square) :
         $classes .= ' shape-square';
     else :
-        $classes .= ' shape-landscape';
+        $classes .= ' shape-portrait';
     endif;
 
     $file_name = pathinfo($img_path)['filename'];

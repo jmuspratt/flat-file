@@ -27,7 +27,7 @@
 
 .view-album__title {
   color: white;
-  font: 400 36px / 1 georgia;
+  font: 400 56px / 1 georgia;
   margin: 0 0 10px;
 }
 
@@ -52,19 +52,14 @@
 
 .view-album__asset {
   justify-content: center;
-  box-shadow: 0 0 5px rgba(0,0,0, .05);
   max-width: 100%;
 }
 
 .title-card {
   padding-top: var(--site-padding);
-  border-top: 1px solid var(--c-light-white);
   background: var(--c-bg);
   width: 100%;
 }
-
-
-
 
 .title-card__head {
   color: white;
@@ -95,10 +90,25 @@
   }
 
   .view-album__header {
-    height: 0;
-    position: sticky;
-    position: -webkit-sticky;
-    top: var(--site-padding);
+    position: fixed;
+    background: var(--c-bg);
+    padding-bottom: var(--site-padding);
+    bottom: 0;
+    z-index: 3;
+    width: var(--sidebar-width);
+  }
+
+  .view-album__header::before {
+    background: linear-gradient(0deg, var(--c-bg), rgba(7,24,39, 0));
+    content: '';
+    display: block;
+    height: 20vh;
+    left: 0;
+    padding: 0;
+    position: absolute;
+    top: -20vh;
+    width: var(--sidebar-width);
+    z-index: 4;
   }
 
   .view-album__section-heading {
@@ -107,13 +117,13 @@
     padding-right: var(--site-padding);
     position: sticky;
     position: -webkit-sticky;
-    top: 250px;
+    top: var(--site-padding);
     width: calc(var(--sidebar-width) - 2 * var(--site-padding));
+    z-index: 2;
   }
 
   .title-card {
     position: absolute;
-    z-index: 3;
   }
 }
 
