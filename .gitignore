@@ -8,5 +8,6 @@
 .DS_Store
 www/albums/*
 www/albums-processed/*
+!www/albums/2020-06-01-Summer-Hikes
 !www/albums/.gitkeep
 !www/albums-processed/.gitkeep
