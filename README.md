@@ -1,3 +1,5 @@
+![](screenshots/sample-album.png)
+
 # 📸 Flat File
 Self-hosted web photo galleries. The only admin UI is  sFTP and strict file-naming conventions. Built with PHP.
 
