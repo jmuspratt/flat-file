@@ -1,27 +1,16 @@
 FROM php:7-fpm
+
+# Add the `non-free` Debian source for the `libfdk-aac-dev` package
 RUN apt-get update && apt-get install -y \
-  libfreetype6-dev \
+  software-properties-common && \
+  apt-add-repository non-free && \
+  apt-get update
+
+RUN apt-get install -y \
   libjpeg62-turbo-dev \
-  libpng-dev \
-  autoconf \
-  automake \
-  build-essential \
-  cmake \
-  git-core \
   libass-dev \
-  libfreetype6-dev \
-  libsdl2-dev \
-  libtool \
-  libva-dev \
-  libvdpau-dev \
   libvorbis-dev \
-  libxcb1-dev \
-  libxcb-shm0-dev \
-  libxcb-xfixes0-dev \
-  pkg-config \
-  texinfo \
   wget \
-  zlib1g-dev \
   nasm \
   yasm \
   libx265-dev \
@@ -31,17 +20,18 @@ RUN apt-get update && apt-get install -y \
   libopus-dev \
   libx264-dev \
   libfdk-aac-dev
-RUN mkdir -p ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
+
+RUN mkdir ~/ffmpeg_sources && cd ~/ffmpeg_sources && \
   wget -O ffmpeg-4.2.2.tar.bz2 https://ffmpeg.org/releases/ffmpeg-4.2.2.tar.bz2 && \
   tar xjvf ffmpeg-4.2.2.tar.bz2 && \
   cd ffmpeg-4.2.2 && \
-  PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
+  PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig" ./configure \
   --prefix="$HOME/ffmpeg_build" \
   --pkg-config-flags="--static" \
   --extra-cflags="-I$HOME/ffmpeg_build/include" \
   --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
   --extra-libs="-lpthread -lm" \
-  --bindir="$HOME/bin" \
+  --bindir="/usr/local/bin" \
   --enable-libfdk-aac \
   --enable-gpl \
   --enable-libass \
@@ -53,8 +43,9 @@ RUN mkdir -p ~/ffmpeg_sources ~/bin && cd ~/ffmpeg_sources && \
   --enable-libx264 \
   --enable-libx265 \
   --enable-nonfree && \
-  PATH="$HOME/bin:$PATH" make -j8 && \
+  make -j8 && \
   make install -j8 && \
   hash -r
-RUN mv ~/bin/ffmpeg /usr/local/bin && mv ~/bin/ffprobe /usr/local/bin && mv ~/bin/ffplay /usr/local/bin && docker-php-ext-configure gd --with-freetype --with-jpeg \
+
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
   && docker-php-ext-install -j$(nproc) gd
