@@ -186,6 +186,8 @@ function video_src($video_path, $albums_path_processed)
 
 function responsive_img_markup($img_path, $sizes, $albums_path_processed)
 {
+    $ratio = null;
+    $presize_value = null;
 
     list($width, $height) = getimagesize($img_path);
     if ($width && $height) :
@@ -218,7 +220,7 @@ function responsive_img_markup($img_path, $sizes, $albums_path_processed)
         $markup .= "<div class=\"presize\" style=\"$presize_style\">";
     endif;
 
-    $markup .= "<img loading=\"lazy\" data-ratio=\"$ratio\" class=\"$classes\"" ;
+    $markup .= "<img loading=\"lazy\" class=\"$classes\"" ;
     $markup .= " sizes=\"(min-width: 960px) calc((100vw - 350px) / 2), (min-width: 1100px) calc(100vw - 350px), 100vw\"";
 
     $i=0;
