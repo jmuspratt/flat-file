@@ -36,9 +36,9 @@ Flat File creates web galleries from directories of images, video and text files
 4. SSH into the server and run `composer install`
 
 ## In use
-1. Create a a new folder locally with a date-based prefix defined in config.php (default is `YYYY-MM-DD-My-Album-Name`)
+1. Create a new folder locally with a date-based prefix defined in config.php (default is `YYYY-MM-DD-My-Album-Name`)
 2. Export your images using the date-based-prefix. [Exiftool](https://exiftool.org) and [a shell script](https://gist.github.com/jmuspratt/3680d45b0c12f8b32093) are useful here if your local photo software doesn't give you enough flexibility.
-3. Insert any text files to serve as headings above a group of photos, using a date-based prefix to position the heading where you want in the alphabetical file sequence . Something like `2020-05-01-Hiking-in-the-alps.txt` will render as `Hiking in the Alps` right before images and videos prefixed with `2020-05-01-`. You can also add secondary text in the contents of the text file.
+3. Insert any text files to serve as headings above a group of photos, using a date-based prefix to position the heading where you want in the alphabetical file sequence . Something like `2020-05-01-Hiking-in-the-alps.txt` will render as `Hiking in the Alps` right before images and videos prefixed with `2020-05-01-`... You can also add secondary text in the contents of the text file.
 4. Visit your site, click the album, and wait for media processing to complete. Subsequent page views will be much faster.
 
 ## Development progress
@@ -53,7 +53,7 @@ Flat File creates web galleries from directories of images, video and text files
 - [x] Native lazyloading with `loading=lazy`
 
 ### To Do
-- [ ] Improve memory usage of image and video processing
+- [ ] Separate asset processing from display code and run asynchronously
 - [ ] On click, show enlarged images and video (with audio on) in a modal
 - [ ] Honor non-16×9 video aspect ratios when processing
 - [ ] Improve display of headings on mobile
