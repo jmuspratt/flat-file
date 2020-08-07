@@ -75,7 +75,7 @@ function get_albums($path)
 }
 
 
-function generate_video($src_path, $albums_path_processed)
+function generate_video($src_path, $albums_path_processed, $verbose = false)
 {
     $file_dir = pathinfo($src_path)['dirname'];
     $file_name = pathinfo($src_path)['filename'];
@@ -92,6 +92,10 @@ function generate_video($src_path, $albums_path_processed)
 
     // Generate the 720p mp4 if it doesn't exist
     if (! file_exists($dest_path)) :
+        if ($verbose) :
+            echo ("🛠️ Generating web-ready video file...");
+        endif;
+
         $ffmpeg = \FFMpeg\FFMpeg::create([
             'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
             'ffprobe.binaries' => '/usr/bin/ffprobe'
@@ -110,6 +114,11 @@ function generate_video($src_path, $albums_path_processed)
             $video->save($format, $dest_path);
         else :
             echo ("FFMPEG or PHP-FFMPEG not installed");
+        endif;
+
+    else:
+        if ($verbose) :
+            echo ("✅ File already exists");
         endif;
     endif;
 
@@ -147,7 +156,7 @@ function get_album_assets($album_path)
     return $assets;
 }
 
-function generate_thumbs($src_path, $albums_path_processed, $sizes)
+function generate_thumbs($src_path, $albums_path_processed, $sizes, $verbose = false)
 {
     $file_dir = pathinfo($src_path)['dirname'];
     $file_name = pathinfo($src_path)['filename'];
@@ -166,12 +175,19 @@ function generate_thumbs($src_path, $albums_path_processed, $sizes)
         $output_path = $cache_dir. '/' . $file_name . '__' . $size . '.' . $file_ext;
 
         if (!file_exists($output_path)) :
+            if ($verbose) :
+                echo ("🛠️ Generating image for $file_name ($size px) <br />");
+            endif;
             make_thumb($src_path, $output_path, $size);
+        else :
+            if ($verbose) :
+                echo ("✅ Image size already exists: $file_name ($size px) <br />");
+            endif;
         endif;
     }
 }
 
-function video_src($video_path, $albums_path_processed)
+function video_src($root_url, $video_path, $albums_path_processed)
 {
     $file_name = pathinfo($video_path)['filename'];
     $file_dir = pathinfo($video_path)['dirname'];
@@ -179,12 +195,12 @@ function video_src($video_path, $albums_path_processed)
 
     $cache_dir = $albums_path_processed . '/' . basename($file_dir);
 
-    $resized_path = $cache_dir. '/'. $file_name . '__720.mp4';
+    $resized_path = $root_url . '/' . $cache_dir. '/'. $file_name . '__720.mp4';
 
     return $resized_path;
 }
 
-function responsive_img_markup($img_path, $sizes, $albums_path_processed)
+function responsive_img_markup($root_url, $img_path, $sizes, $albums_path_processed)
 {
     $ratio = null;
     $presize_value = null;
@@ -225,7 +241,7 @@ function responsive_img_markup($img_path, $sizes, $albums_path_processed)
 
     $i=0;
     foreach ($sizes as $size) :
-        $thumb_path = $cache_dir . $file_name . '__' . $size . '.' . $file_ext;
+        $thumb_path = $root_url . '/' . $cache_dir . $file_name . '__' . $size . '.' . $file_ext;
 
         if ($i===0) :
             $markup .= " src=\"$thumb_path\"";

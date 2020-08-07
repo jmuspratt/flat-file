@@ -1,0 +1,33 @@
+.view-admin {
+  padding: var(--site-padding);
+}
+
+.view-admin__group {
+  margin-bottom: 50px;
+}
+
+.view-admin__head{
+  font: bold 36px / 1.5 arial;
+}
+
+.view-admin__head:not(:first-of-type) {
+  margin-top: 80px;
+}
+
+.view-admin__report {
+  font: 16px / 1.5 arial;
+  list-style: none;
+  margin: 0 0 20px;
+  padding: 0 0 0 50px;
+}
+
+.view-admin__report li {
+  list-style: none;
+  margin: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--c-light-white);
+
+}
+/* .view-admin__report li:first-child {
+  border-top: 1px solid var(--c-light-white);
+} */
