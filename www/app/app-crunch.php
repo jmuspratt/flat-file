@@ -24,7 +24,7 @@ foreach ($albums as $album) :
             $file_name = pathinfo($asset_path)['filename'];
         if ($file_type === 'video') :
                 echo ("<li>🎥 Video: $file_name <br />");
-                generate_video($asset_path, $albums_path_processed, true);
+                generate_video($asset_path, $albums_path_processed_adjusted, true);
                 echo ("</li>");
         elseif ($file_type === 'image') :
                 echo ("<li>📸 Image: $file_name <br />");
