@@ -7,38 +7,36 @@
 
 $albums = get_albums('../'.$albums_path);
 foreach ($albums as $album) :
-    $album_path = str_replace('/', '', str_replace('.', '', $album)); ?>
-
-    <h2>Scanning <?php echo $album_path; ?></h2>
-<table>
-<tbody>
-<?php
-    $album_assets = get_album_assets('../' . $albums_path . '/' . $album_path);
-
-    foreach ($album_assets as $asset_path) :
-        $asset_ext = strtolower(pathinfo($asset_path, PATHINFO_EXTENSION));
-        $file_type = get_file_type($asset_ext);
-        ?>
-        <tr>
-            <td><?php echo $asset_path; ?></td>
-    <?php
-        if ($file_type === 'video') :
-            echo ("<td>Video</td>");
-            // generate_video($asset_path, $albums_path_processed);
-        elseif ($file_type === 'image') :
-            echo ("<td>Image</td>");
-        //     generate_thumbs($asset_path, $albums_path_processed, $thumb_sizes);
-        elseif ($file_type === 'text') :
-            echo ("<td>Text file</td>");
-        //     echo ("text file");
-        else :
-            echo ("<td>Unrecognized file type</td>");
-        endif;
-        echo ("</tr>");
-    endforeach;
+    $album_path = str_replace('/', '', str_replace('.', '', $album));
     ?>
+    <section class="view-admin__group">
 
+    <h2 class="view-admin__head">Scanning <?php echo $album_path; ?></h2>
+    <?php
+        $album_assets = get_album_assets('../' . $albums_path . '/' . $album_path);
+        $albums_path_processed_adjusted =  '../' . $albums_path_processed;
+
+    foreach ($album_assets as $asset_path) : ?>
+        <ul class="view-admin__report">
+        <?php
+            $asset_ext = strtolower(pathinfo($asset_path, PATHINFO_EXTENSION));
+            $file_type = get_file_type($asset_ext);
+            $file_name = pathinfo($asset_path)['filename'];
+        if ($file_type === 'video') :
+                echo ("<li>🎥 Video: $file_name <br />");
+                generate_video($asset_path, $albums_path_processed, true);
+                echo ("</li>");
+        elseif ($file_type === 'image') :
+                echo ("<li>📸 Image: $file_name <br />");
+                generate_thumbs($asset_path, $albums_path_processed_adjusted, $thumb_sizes, true);
+                echo ("</li>");
+        elseif ($file_type === 'text') :
+                echo ("<li>🗒️ Text file: $file_name</li>");
+        else :
+                echo ("<li>⚠️ Unrecognized file type</li>");
+        endif; ?>
+            </ul>
+    <?php endforeach; ?>
+    </section>
 <?php endforeach; ?>
-</tbody>
-</table>
 
