@@ -75,7 +75,7 @@ function get_albums($path)
 }
 
 
-function generate_video($src_path, $albums_path_processed, $verbose = false)
+function generate_video($src_path, $verbose = false)
 {
     $file_dir = pathinfo($src_path)['dirname'];
     $file_name = pathinfo($src_path)['filename'];
@@ -83,7 +83,7 @@ function generate_video($src_path, $albums_path_processed, $verbose = false)
 
     // Create album sub-directory if it doesn't exist
     $new_album_dir = basename($file_dir);
-    $cache_dir = $albums_path_processed . '/' . $new_album_dir;
+    $cache_dir = ALBUMS_PATH_PROCESSED . '/' . $new_album_dir;
     if (!file_exists($cache_dir)) :
         mkdir($cache_dir, 0777, true);
     endif;
@@ -96,9 +96,11 @@ function generate_video($src_path, $albums_path_processed, $verbose = false)
             echo ("🛠️ Generating web-ready video file...");
         endif;
 
+
+        // $ffmpeg = \FFMpeg\FFMpeg::create();
         $ffmpeg = \FFMpeg\FFMpeg::create([
-            'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
-            'ffprobe.binaries' => '/usr/bin/ffprobe'
+            'ffmpeg.binaries'  => FFMPEG_DIR . '/ffmpeg',
+            'ffprobe.binaries' => FFMPEG_DIR . '/ffprobe'
         ]);
         if ($ffmpeg) :
             $video = $ffmpeg->open($src_path);
@@ -115,8 +117,7 @@ function generate_video($src_path, $albums_path_processed, $verbose = false)
         else :
             echo ("FFMPEG or PHP-FFMPEG not installed");
         endif;
-
-    else:
+    else :
         if ($verbose) :
             echo ("✅ File already exists");
         endif;
@@ -156,7 +157,7 @@ function get_album_assets($album_path)
     return $assets;
 }
 
-function generate_thumbs($src_path, $albums_path_processed, $sizes, $verbose = false)
+function generate_thumbs($src_path, $sizes, $verbose = false)
 {
     $file_dir = pathinfo($src_path)['dirname'];
     $file_name = pathinfo($src_path)['filename'];
@@ -164,7 +165,7 @@ function generate_thumbs($src_path, $albums_path_processed, $sizes, $verbose = f
 
     $new_album_dir = basename($file_dir);
     // Create the thumbs directory if it doesn't exist
-    $cache_dir = $albums_path_processed . '/' . $new_album_dir;
+    $cache_dir = ALBUMS_PATH_PROCESSED . '/' . $new_album_dir;
     if (!file_exists($cache_dir)) :
         mkdir($cache_dir, 0777, true);
     endif;
@@ -187,20 +188,20 @@ function generate_thumbs($src_path, $albums_path_processed, $sizes, $verbose = f
     }
 }
 
-function video_src($root_url, $video_path, $albums_path_processed)
+function video_src($video_path)
 {
     $file_name = pathinfo($video_path)['filename'];
     $file_dir = pathinfo($video_path)['dirname'];
     $file_ext = pathinfo($video_path)['extension'];
 
-    $cache_dir = $albums_path_processed . '/' . basename($file_dir);
+    $cache_dir = ALBUMS_DIR_PROCESSED . '/' . basename($file_dir);
 
-    $resized_path = $root_url . '/' . $cache_dir. '/'. $file_name . '__720.mp4';
+    $resized_url = ROOT_URL . '/' . $cache_dir. '/'. $file_name . '__720.mp4';
 
-    return $resized_path;
+    return $resized_url;
 }
 
-function responsive_img_markup($root_url, $img_path, $sizes, $albums_path_processed)
+function responsive_img_markup($img_path, $sizes)
 {
     $ratio = null;
     $presize_value = null;
@@ -228,7 +229,7 @@ function responsive_img_markup($root_url, $img_path, $sizes, $albums_path_proces
     $file_dir = pathinfo($img_path)['dirname'];
     $file_ext = pathinfo($img_path)['extension'];
 
-    $cache_dir = $albums_path_processed . '/' . basename($file_dir) . '/';
+    $cache_dir = ALBUMS_DIR_PROCESSED . '/' . basename($file_dir) . '/';
 
     $markup = '';
 
@@ -241,7 +242,7 @@ function responsive_img_markup($root_url, $img_path, $sizes, $albums_path_proces
 
     $i=0;
     foreach ($sizes as $size) :
-        $thumb_path = $root_url . '/' . $cache_dir . $file_name . '__' . $size . '.' . $file_ext;
+        $thumb_path = ROOT_URL . '/' . $cache_dir . $file_name . '__' . $size . '.' . $file_ext;
 
         if ($i===0) :
             $markup .= " src=\"$thumb_path\"";

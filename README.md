@@ -24,10 +24,11 @@ Flat File creates web galleries from directories of images, video and text files
 
 ## Installation
 
-### Installing Local
+### Installing Locally
 1. Install Docker and [ups-dock](http://github.com/Upstatement/ups-dock)
-2. Run `docker build -t flat-file .`
-3. Run `docker-compose up`
+2. `cd` to your `flat-file` root diretory
+3. Run `docker build -t flat-file .`
+4. Run `docker-compose up`
 
 ### Installing on a web server
 1. Edit `www/app/config.php` with details from your server

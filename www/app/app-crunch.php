@@ -5,7 +5,7 @@
 <h2>Admin</h2>
 <?php
 
-$albums = get_albums('../'.$albums_path);
+$albums = get_albums(ALBUMS_PATH);
 foreach ($albums as $album) :
     $album_path = str_replace('/', '', str_replace('.', '', $album));
     ?>
@@ -13,8 +13,7 @@ foreach ($albums as $album) :
 
     <h2 class="view-admin__head">Scanning <?php echo $album_path; ?></h2>
     <?php
-        $album_assets = get_album_assets('../' . $albums_path . '/' . $album_path);
-        $albums_path_processed_adjusted =  '../' . $albums_path_processed;
+        $album_assets = get_album_assets(ALBUMS_PATH . '/' . $album_path);
 
     foreach ($album_assets as $asset_path) : ?>
         <ul class="view-admin__report">
@@ -24,11 +23,11 @@ foreach ($albums as $album) :
             $file_name = pathinfo($asset_path)['filename'];
         if ($file_type === 'video') :
                 echo ("<li>🎥 Video: $file_name <br />");
-                generate_video($asset_path, $albums_path_processed_adjusted, true);
+                generate_video($asset_path, true);
                 echo ("</li>");
         elseif ($file_type === 'image') :
                 echo ("<li>📸 Image: $file_name <br />");
-                generate_thumbs($asset_path, $albums_path_processed_adjusted, $thumb_sizes, true);
+                generate_thumbs($asset_path, $thumb_sizes, true);
                 echo ("</li>");
         elseif ($file_type === 'text') :
                 echo ("<li>🗒️ Text file: $file_name</li>");

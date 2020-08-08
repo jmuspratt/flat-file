@@ -4,7 +4,8 @@
     <h1 class="view-index__title">Albums<h1>
     <ul class="view-index__list">
     <?php
-    $albums = get_albums($albums_path);
+    $albums = get_albums(ALBUMS_PATH);
+
 
     foreach ($albums as $album) :
         $album_path = str_replace('/', '', str_replace('.', '', $album));
