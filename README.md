@@ -27,14 +27,15 @@ Flat File creates web galleries from directories of images, video and text files
 ### Installing Locally
 1. Install Docker and [ups-dock](http://github.com/Upstatement/ups-dock)
 2. `cd` to your `flat-file` root diretory
-3. Run `docker build -t flat-file .`
-4. Run `docker-compose up`
+3. Duplicate `www/app/config.example.php` and save as `www/app/config.php`
+4. Run `docker build -t flat-file .`
+5. Run `docker-compose up`
 
 ### Installing on a web server
-1. Edit `www/app/config.php` with details from your server
-2. Upload the contents of `/www/` to your server
+1. Upload the contents of `/www/` to your server
+2. Duplicate `www/app/config.example.php` and save `www/app/config.php`, and edit this copy with paths and URLs for your server
 3. Set the permissions of `albums` and `albums-processed` to `777`
-4. SSH into the server and run `composer install`
+4. SSH into the server, `cd` to the root directory, and run `composer install`
 
 ## In use
 1. Create a new folder locally with a date-based prefix defined in config.php (default is `YYYY-MM-DD-My-Album-Name`)
