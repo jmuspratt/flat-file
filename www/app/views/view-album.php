@@ -1,7 +1,7 @@
 <div class="view-album view">
     <?php
-        $album_title = extract_title($album_name, $album_date_format, $output_date_format);
-        $album_date = extract_date($album_name, $album_date_format, $output_date_format);
+        $album_title = extract_title($album_name, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
+        $album_date = extract_date($album_name, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
         $album_assets = get_album_assets(ALBUMS_PATH . '/' . $album_name);
     ?>
 

@@ -1,5 +1,5 @@
 <?php
-    $title = extract_title(pathinfo($asset_path)['filename'], $file_date_format);
+    $title = extract_title(pathinfo($asset_path)['filename'], FILE_DATE_FORMAT);
     $contents = get_file_contents($asset_path);
 ?>
 

@@ -46,11 +46,11 @@ function format_date($string, $input_date_format, $output_date_format)
     return $date->format($output_date_format);
 }
 
-function extract_date($album_dir_string, $input_date_format, $output_date_format)
+function extract_date($album_dir_string, $input_date_format)
 {
     $prefix_length = date_format_length($input_date_format);
     $date_string = substr($album_dir_string, 0, $prefix_length);
-    return format_date($date_string, $input_date_format, $output_date_format);
+    return format_date($date_string, $input_date_format, OUTPUT_DATE_FORMAT);
 }
 
 function extract_title($album_dir_string, $input_date_format)
@@ -157,7 +157,7 @@ function get_album_assets($album_path)
     return $assets;
 }
 
-function generate_thumbs($src_path, $sizes, $verbose = false)
+function generate_thumbs($src_path, $verbose = false)
 {
     $file_dir = pathinfo($src_path)['dirname'];
     $file_name = pathinfo($src_path)['filename'];
@@ -172,7 +172,7 @@ function generate_thumbs($src_path, $sizes, $verbose = false)
 
 
     // For each size, generate the thumb unless it exists
-    foreach ($sizes as $size) {
+    foreach (THUMB_SIZES as $size) {
         $output_path = $cache_dir. '/' . $file_name . '__' . $size . '.' . $file_ext;
 
         if (!file_exists($output_path)) :
@@ -201,7 +201,7 @@ function video_src($video_path)
     return $resized_url;
 }
 
-function responsive_img_markup($img_path, $sizes)
+function responsive_img_markup($img_path)
 {
     $ratio = null;
     $presize_value = null;
@@ -241,7 +241,7 @@ function responsive_img_markup($img_path, $sizes)
     $markup .= " sizes=\"(min-width: 960px) calc((100vw - 350px) / 2), (min-width: 1100px) calc(100vw - 350px), 100vw\"";
 
     $i=0;
-    foreach ($sizes as $size) :
+    foreach (THUMB_SIZES as $size) :
         $thumb_path = ROOT_URL . '/' . $cache_dir . $file_name . '__' . $size . '.' . $file_ext;
 
         if ($i===0) :
@@ -252,7 +252,7 @@ function responsive_img_markup($img_path, $sizes)
         $markup .= $thumb_path . ' ' . $size . 'w';
 
         // All but last value gets trailing comma
-        if ($i < sizeof($sizes) - 1) :
+        if ($i < sizeof(THUMB_SIZES) - 1) :
             $markup .= ', ';
         endif;
         $i++;

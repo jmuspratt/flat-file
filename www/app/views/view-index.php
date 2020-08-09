@@ -9,8 +9,8 @@
 
     foreach ($albums as $album) :
         $album_path = str_replace('/', '', str_replace('.', '', $album));
-        $album_title = extract_title($album_path, $album_date_format, $output_date_format);
-        $album_date = extract_date($album_path, $album_date_format, $output_date_format);
+        $album_title = extract_title($album_path, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
+        $album_date = extract_date($album_path, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
         ?>
 
         <li class="view-index__item">
