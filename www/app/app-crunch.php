@@ -27,7 +27,7 @@ foreach ($albums as $album) :
                 echo ("</li>");
         elseif ($file_type === 'image') :
                 echo ("<li>📸 Image: $file_name <br />");
-                generate_thumbs($asset_path, $thumb_sizes, true);
+                generate_thumbs($asset_path, true);
                 echo ("</li>");
         elseif ($file_type === 'text') :
                 echo ("<li>🗒️ Text file: $file_name</li>");
