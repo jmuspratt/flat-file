@@ -159,12 +159,11 @@
 }
 
 .view-album__section-heading {
-  padding: 10px 0 0;
+  padding: 10px 0 5px;
 }
 
 .title-card__head {
   font: 21px/ 1.375 arial;
-  margin-bottom: 15px;;
 }
 
 .title-card__contents {
@@ -186,8 +185,8 @@
 
   .view-album__content {
     padding-bottom: 200px;
-    width: 80%;
     margin: 0 auto;
+    max-width: 1100px;
   }
 
   .view-album__header {
@@ -206,7 +205,7 @@
     padding-top: 100px;
   }
   .view-album__section-heading {
-    padding-top: 45px;
+    padding-top: 50px;
   }
 
   .view-album__grid {
