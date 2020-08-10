@@ -26,7 +26,6 @@
 }
 
 .view-album__title {
-  color: white;
   font: 400 56px / 1 georgia;
   margin: 0 0 10px;
 }
@@ -61,7 +60,6 @@
 }
 
 .title-card__head {
-  color: white;
   font: 21px/ 1.375 georgia;
   margin-bottom: 15px;;
 }

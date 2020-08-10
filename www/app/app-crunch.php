@@ -7,13 +7,12 @@
 
 $albums = get_albums(ALBUMS_PATH);
 foreach ($albums as $album) :
-    $album_path = str_replace('/', '', str_replace('.', '', $album));
     ?>
     <section class="view-admin__group">
 
-    <h2 class="view-admin__head">Scanning <?php echo $album_path; ?></h2>
+    <h2 class="view-admin__head">Scanning <?php echo $album["id"]; ?></h2>
     <?php
-        $album_assets = get_album_assets(ALBUMS_PATH . '/' . $album_path);
+        $album_assets = get_album_assets($album["path"]);
 
     foreach ($album_assets as $asset_path) : ?>
         <ul class="view-admin__report">

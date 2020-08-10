@@ -1,7 +1,9 @@
 :root {
-  --c-bg: #071827;
-  --c-base-text-color: #fff;
+  --c-bg: #fff;
+  --c-base-text-color: #000;
+  --c-base-link-color: blue;
   --c-light-white: rgba(255, 255, 255, 0.2);
+  --f-base: 16px / 1.5 'Arial, sans-serif';
   --sidebar-width: 350px;
   --site-padding: 30px;
 }
@@ -17,14 +19,14 @@ body, body * {
 body {
   background-color: var(--c-bg);
   color: var(--c-base-text-color);
-  font: 16px / 1 georgia;
+  font: var(--f-base);
   margin: 0;
   padding: 0;
 
 }
 
 a {
-  color: white;
+  color: var(--c-base-link-color);
   text-decoration: none;
 }
 
