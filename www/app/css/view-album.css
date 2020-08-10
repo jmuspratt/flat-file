@@ -128,19 +128,6 @@
   padding: 0 var(--site-padding) 200px;
 }
 
-.view-album__title {
-  font: 400 56px / 1 arial;
-  margin: 0 0 10px;
-  font-size: clamp(1.25rem, 1rem+2vw, 1.5rem);
-}
-
-.view-album__date {
-  font: 400 21px /1.5 arial;
-  margin: 0 0 30px;
-  opacity: 0.4;
-}
-
-
 .view-album__item {
   margin-bottom: var(--site-padding);
 }
@@ -163,11 +150,11 @@
 }
 
 .title-card__head {
-  font: 21px/ 1.375 arial;
+  font-size: var(--f-size-medium);
 }
 
 .title-card__contents {
-  font: 15px / 1.5 arial;
+  font-size: var(--f-size-medium);
   opacity: 0.5;
 }
 

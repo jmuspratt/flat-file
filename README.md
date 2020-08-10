@@ -10,7 +10,7 @@ Flat File creates web galleries from directories of images, video and text files
 - Every directory of media becomes an album. Albums are listed and sorted in reverse-chron order on the home page.
 - Your high-resolution images get processed into multiple sizes and served as responsive images
 - Your videos get processed and served as 720p mp4s.
-- Text files become headings and get sticky positioning in the sidebar.
+- Text files become headings
 - By default, images/videos are laid out in two columns on laptop and wider screens.
 - If there's only one image between headings, it gets a large format treatment.
 
@@ -53,13 +53,13 @@ Flat File creates web galleries from directories of images, video and text files
 - [x] Parse Date-prefixed text files and output as headings
 - [x] Native responsive images (`srcset` and `sizes`)
 - [x] Native lazyloading with `loading=lazy`
+- [x] Separate asset processing from display code and run asynchronously ()
+- [x] Improve display of headings on mobile
+- [x] Add UI to step through albums from album view (done as dropdown)
 
 ### To Do
-- [ ] Separate asset processing from display code and run asynchronously
 - [ ] On click, show enlarged images and video (with audio on) in a modal
 - [ ] Honor non-16×9 video aspect ratios when processing
-- [ ] Improve display of headings on mobile
-- [ ] Add UI to step through albums from album view
 - [ ] Enhance index page with thumbnails
 
 ### Maybe

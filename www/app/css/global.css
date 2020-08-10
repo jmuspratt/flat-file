@@ -3,9 +3,9 @@
   --c-base-text-color: #000;
   --c-base-link-color: blue;
   --c-light-white: rgba(255, 255, 255, 0.2);
-  --f-base: 16px / 1.5 Arial, sans-serif;
+  --f-base: 16px / 1.375 Arial, sans-serif;
   --f-size-big: clamp(1.25rem, 2vw, 1.8rem);
-  --f-size-medium: clamp(1rem, 2vw, 1.5rem);
+  --f-size-medium: clamp(1rem, 2vw, 1.375rem);
   --sidebar-width: 350px;
   --site-padding: 5px;
 }
@@ -45,14 +45,6 @@ a:link {
   text-decoration: none;
 }
 
-.btn {
-  border: 1px solid white;
-  border-radius: 17px;
-  display: inline-block;
-  font: 13px / 1 arial;
-  height: 34px;
-  padding: 10px 14px;
-}
 
 figure {
   display: block;
