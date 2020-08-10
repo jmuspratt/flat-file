@@ -14,22 +14,19 @@ foreach ($albums as $album) :
     <?php
         $album_assets = get_album_assets($album["path"]);
 
-    foreach ($album_assets as $asset_path) : ?>
+    foreach ($album_assets as $asset_info) : ?>
         <ul class="view-admin__report">
         <?php
-            $asset_ext = strtolower(pathinfo($asset_path, PATHINFO_EXTENSION));
-            $file_type = get_file_type($asset_ext);
-            $file_name = pathinfo($asset_path)['filename'];
-        if ($file_type === 'video') :
-                echo ("<li>🎥 Video: $file_name <br />");
-                generate_video($asset_path, true);
+        if ($asset_info["file_type"] === 'video') :
+                echo ("<li>🎥 Video: $asset_info[filename] <br />");
+                generate_video($asset_info["path"], true);
                 echo ("</li>");
-        elseif ($file_type === 'image') :
-                echo ("<li>📸 Image: $file_name <br />");
-                generate_thumbs($asset_path, true);
+        elseif ($asset_info["file_type"] === 'image') :
+                echo ("<li>📸 Image: $asset_info[filename]<br />");
+                generate_thumbs($asset_info["path"], true);
                 echo ("</li>");
-        elseif ($file_type === 'text') :
-                echo ("<li>🗒️ Text file: $file_name</li>");
+        elseif ($asset_info["file_type"] === 'text') :
+                echo ("<li>🗒️ Text file: $asset_info[filename]</li>");
         else :
                 echo ("<li>⚠️ Unrecognized file type</li>");
         endif; ?>
