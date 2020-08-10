@@ -3,6 +3,9 @@
 // Home page for this app
 define("ROOT_URL", "https://flatfile.ups.dock");
 
+// Site name
+define("SITE_NAME", "My Photos");
+
 // FFMPEG location
 define('FFMPEG_DIR', "/usr/local/bin");
 

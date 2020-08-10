@@ -18,10 +18,10 @@ require 'vendor/autoload.php';
 include 'app/config.php';
 include 'app/functions.php';
 
-$album_name = isset($_GET['a']) ? $_GET['a'] : null;
+$album_id = isset($_GET['a']) ? $_GET['a'] : null;
 
 
-if ($album_name) :
+if ($album_id) :
         include 'app/views/view-album.php';
 else :
         include 'app/views/view-index.php';

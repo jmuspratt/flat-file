@@ -3,9 +3,23 @@
   --c-base-text-color: #000;
   --c-base-link-color: blue;
   --c-light-white: rgba(255, 255, 255, 0.2);
-  --f-base: 16px / 1.5 'Arial, sans-serif';
+  --f-base: 16px / 1.5 Arial, sans-serif;
+  --f-size-big: clamp(1.25rem, 2vw, 1.8rem);
+  --f-size-medium: clamp(1rem, 2vw, 1.5rem);
   --sidebar-width: 350px;
-  --site-padding: 30px;
+  --site-padding: 5px;
+}
+
+@media ( min-width: 400px) {
+  :root {
+    --site-padding: 20px;
+  }
+}
+
+@media ( min-width: 960px) {
+  :root {
+    --site-padding: 30px;
+  }
 }
 
 html {

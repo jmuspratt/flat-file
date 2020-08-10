@@ -60,27 +60,32 @@ function extract_title($album_dir_string, $input_date_format)
     return string_to_title($title);
 }
 
+function get_album_info_from_id($album_id)
+{
+    $album_url = ROOT_URL . '/?a=' . $album_id;
+    $album_path = ALBUMS_PATH . '/' . $album_id;
+    $album_title = extract_title($album_id, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
+    $album_date = extract_date($album_id, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
 
+    $album_info = array(
+        "id" => $album_id,
+        "url" => $album_url,
+        "path" => $album_path,
+        "display_title" => $album_title,
+        "display_date" => $album_date
+    );
+
+    return $album_info;
+}
 
 function get_albums($path) {
     $albums = [];
     foreach (glob($path . "/*", GLOB_ONLYDIR) as $dir_full_path) :
-        $album_dirname = basename($dir_full_path);
-
-        $album_id = $album_dirname;
-        $album_url = ROOT_URL . '/?a=' . $album_dirname;
-        $album_path = ALBUMS_PATH . '/' . $album_dirname;
-        $album_title = extract_title($album_dirname, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
-        $album_date = extract_date($album_dirname, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
-
-        $albums[] = array(
-            "id" => $album_id,
-            "url" => $album_url,
-            "path" => $album_path,
-            "display_title" => $album_title,
-            "display_date" => $album_date
-        );
+        $album_id = basename($dir_full_path);
+        $album_info = get_album_info_from_id($album_id);
+        $albums[] = $album_info;
     endforeach;
+    rsort($albums);
     return $albums;
 }
 

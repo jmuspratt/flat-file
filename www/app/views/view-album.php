@@ -1,14 +1,36 @@
 <div class="view-album view">
     <?php
-        $album_title = extract_title($album_name, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
-        $album_date = extract_date($album_name, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
-        $album_assets = get_album_assets(ALBUMS_PATH . '/' . $album_name);
+        // Use album_id (set in index.php) to fetch album_info and assets
+        $album_info = get_album_info_from_id($album_id);
+        $album_assets = get_album_assets($album_info["path"]);
+
+        // Get all albums' info for dropdown
+        $all_albums = get_albums(ALBUMS_PATH);
+        // Store position of the active album in all_albums;
+        $current_index = array_search($album_info, $all_albums);
+
     ?>
 
     <header class="view-album__header">
-        <p class="view-album__back"><a class="view-album__back-link" href="<?php echo ROOT_URL; ?>">Back to albums</a></p>
-        <h1 class="view-album__title"><?php echo $album_title; ?></h1>
-        <h2 class="view-album__date"><?php echo $album_date; ?></h2>
+        <h1 class="view-album___site-name"><?php echo SITE_NAME; ?></h1>
+        <div class="view-album__dropdown">
+            <ul class="view-album__dropdown-list view-album__dropdown-list--current-<?php echo $current_index; ?>" data-current="<?php echo $current_index; ?>">
+            <?php foreach ($all_albums as $album_item) :
+                $is_current_album = $album_item["id"] == $album_info['id'];
+                $item_class = "view-album__dropdown-item";
+
+                if ($is_current_album) :
+                    $item_class .= ' view-album__dropdown-item--current' ;
+                endif;
+                ?>
+                <li class="<?php echo $item_class; ?>">
+                    <a class="view-album__dropdown-link" href="<?php echo $album_item["url"]; ?>">
+                        <?php echo $album_item["display_title"]; ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+            </ul>
+        </div>
     </header>
 
     <section class="view-album__content">
