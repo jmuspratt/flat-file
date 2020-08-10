@@ -1,7 +1,16 @@
 <?php
 ?>
 <div class="view-index view">
-    <h1 class="view-index__title"><?php echo SITE_NAME;?><h1>
+
+    <header class="page-header">
+        <h1 class="page-header___site-name">
+            <a class="page-header___site-name-link" href="<?php echo ROOT_URL; ?>">
+                <?php echo SITE_NAME; ?>
+            </a>
+        </h1>
+    </header>
+
+    <section class="page-content">
     <ul class="view-index__list">
     <?php
     $albums = get_albums(ALBUMS_PATH);
@@ -16,4 +25,5 @@
 
     <?php endforeach; ?>
     </ul>
+    </section>
 </div>

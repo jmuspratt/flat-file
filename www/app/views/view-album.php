@@ -11,9 +11,9 @@
 
     ?>
 
-    <header class="view-album__header">
-        <h1 class="view-album___site-name">
-            <a class="view-album__site-name-link" href="<?php echo ROOT_URL; ?>">
+    <header class="page-header">
+        <h1 class="page-header___site-name">
+            <a class="page-header___site-name-link" href="<?php echo ROOT_URL; ?>">
                 <?php echo SITE_NAME; ?>
             </a>
         </h1>
@@ -37,7 +37,7 @@
         </div>
     </header>
 
-    <section class="view-album__content">
+    <section class="page-content">
         <?php
         $item_count = sizeof($album_assets);
         $i = 1;
