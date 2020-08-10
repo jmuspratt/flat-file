@@ -1,7 +1,7 @@
 <?php
 ?>
 <div class="view-index view">
-    <h1 class="view-index__title">Albums<h1>
+    <h1 class="view-index__title"><?php echo SITE_NAME;?><h1>
     <ul class="view-index__list">
     <?php
     $albums = get_albums(ALBUMS_PATH);

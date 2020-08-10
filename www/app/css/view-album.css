@@ -15,6 +15,9 @@
   font-size: var(--f-size-big);
   font-weight: 400;
 }
+.view-album___site-name-link {
+  display: inline-block;
+}
 
 .view-album__dropdown {
   border: 1.5px solid #000;

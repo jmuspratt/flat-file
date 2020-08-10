@@ -39,8 +39,9 @@ body {
 
 }
 
-a {
-  color: var(--c-base-link-color);
+a,
+a:link {
+  color: var(--c-base-text-color);
   text-decoration: none;
 }
 

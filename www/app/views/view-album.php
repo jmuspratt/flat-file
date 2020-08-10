@@ -12,7 +12,11 @@
     ?>
 
     <header class="view-album__header">
-        <h1 class="view-album___site-name"><?php echo SITE_NAME; ?></h1>
+        <h1 class="view-album___site-name">
+            <a class="view-album__site-name-link" href="<?php echo ROOT_URL; ?>">
+                <?php echo SITE_NAME; ?>
+            </a>
+        </h1>
         <div class="view-album__dropdown">
             <ul class="view-album__dropdown-list view-album__dropdown-list--current-<?php echo $current_index; ?>" data-current="<?php echo $current_index; ?>">
             <?php foreach ($all_albums as $album_item) :
