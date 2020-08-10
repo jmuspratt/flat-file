@@ -52,11 +52,11 @@
 
                 <?php
                 if ($asset_info["file_type"] === 'video') : ?>
-                    <div class="view-album__item view-album__item--<?php echo $file_type; ?>">
+                    <div class="view-album__item view-album__item--<?php echo $asset_info['file_type']; ?>">
                         <?php include 'asset-video.php'; ?>
                     </div>
                 <?php elseif ($asset_info["file_type"] === 'image') : ?>
-                    <div class="view-album__item view-album__item--<?php echo $file_type; ?>">
+                    <div class="view-album__item view-album__item--<?php echo $asset_info['file_type']; ?>">
                         <?php include 'asset-image.php'; ?>
                     </div>
                 <?php elseif ($asset_info["file_type"] === 'text') : ?>
