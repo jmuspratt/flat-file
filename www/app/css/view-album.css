@@ -189,7 +189,6 @@
 
   .view-album__header {
     position: fixed;
-    bottom: 0;
     top: 0;
     z-index: 3;
     width: 100%;

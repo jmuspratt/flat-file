@@ -163,12 +163,25 @@ function make_thumb($src, $dest, $desired_width)
 
 function get_album_assets($album_path)
 {
-    foreach (glob($album_path . "/*") as $asset) {
-        if (!is_dir($asset)) {
-            $assets[] = $asset;
-        }
-    }
-
+    $album_id = basename($album_path);
+    foreach (glob($album_path . "/*") as $asset) :
+        // exclude directories
+        if (!is_dir($asset)) :
+            $filename = pathinfo($asset)["basename"];
+            $extension = strtolower(pathinfo($asset, PATHINFO_EXTENSION));
+            $type = get_file_type($extension);
+            $url = ROOT_URL . '/' . ALBUMS_DIR . '/' . $album_id . '/' . $filename;
+            $album_id = basename($album_path);
+            $assets[] = array(
+                "album_id" => $album_id,
+                "extension" => $extension,
+                "filename" => $filename,
+                "file_type" => $type,
+                "path" => $asset,
+                "url" => $url,
+            );
+        endif;
+    endforeach;
     return $assets;
 }
 

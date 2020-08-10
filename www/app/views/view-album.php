@@ -37,27 +37,25 @@
         <?php
         $item_count = sizeof($album_assets);
         $i = 1;
-        foreach ($album_assets as $asset_path) :
+        foreach ($album_assets as $asset_info) :
             $first = $i == 1;
             $last = $item_count - $i == 0;
-            $asset_ext = strtolower(pathinfo($asset_path, PATHINFO_EXTENSION));
-            $file_type = get_file_type($asset_ext);
             ?>
-            <?php if ($file_type) : ?>
-                <?php if ($first && in_array($file_type, array('image', 'video'))) : ?>
+            <?php if ($asset_info["file_type"]) : ?>
+                <?php if ($first && in_array($asset_info["file_type"], array('image', 'video'))) : ?>
                     <section class="view-album__grid">
                 <?php endif; ?>
 
                 <?php
-                if ($file_type === 'video') : ?>
+                if ($asset_info["file_type"] === 'video') : ?>
                     <div class="view-album__item view-album__item--<?php echo $file_type; ?>">
                         <?php include 'asset-video.php'; ?>
                     </div>
-                <?php elseif ($file_type === 'image') : ?>
+                <?php elseif ($asset_info["file_type"] === 'image') : ?>
                     <div class="view-album__item view-album__item--<?php echo $file_type; ?>">
                         <?php include 'asset-image.php'; ?>
                     </div>
-                <?php elseif ($file_type === 'text') : ?>
+                <?php elseif ($asset_info["file_type"] === 'text') : ?>
                     <?php if (! $first) : ?>
                     </section> <!-- grid -->
                     <?php endif; ?>
@@ -74,7 +72,7 @@
                 <?php endif; ?>
 
             <?php else : ?>
-            <!-- Error, unrecognized file extension: <?php echo $asset_path; ?> -->
+            <!-- Error, unrecognized file: <?php echo $asset_info[$filename]; ?> -->
             <?php endif; ?>
             <?php $i = $i+1; ?>
         <?php endforeach; ?>

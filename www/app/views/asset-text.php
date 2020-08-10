@@ -1,6 +1,6 @@
 <?php
-    $title = extract_title(pathinfo($asset_path)['filename'], FILE_DATE_FORMAT);
-    $contents = get_file_contents($asset_path);
+    $title = extract_title(pathinfo($asset_info["filename"])["filename"], FILE_DATE_FORMAT);
+    $contents = get_file_contents($asset_info["path"]);
 ?>
 
 <div class="title-card">
