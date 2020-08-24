@@ -66,11 +66,13 @@ function get_album_info_from_id($album_id)
     $album_path = ALBUMS_PATH . '/' . $album_id;
     $album_title = extract_title($album_id, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
     $album_date = extract_date($album_id, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
+    $album_asset_count = count(get_album_assets($album_path));
 
     $album_info = array(
         "id" => $album_id,
         "url" => $album_url,
         "path" => $album_path,
+        "album_asset_count" => $album_asset_count,
         "display_title" => $album_title,
         "display_date" => $album_date
     );
@@ -266,7 +268,9 @@ function responsive_img_markup($img_path)
     endif;
 
     $markup .= "<img loading=\"lazy\" class=\"$classes\"" ;
-    $markup .= " sizes=\"(min-width: 960px) calc((100vw - 350px) / 2), (min-width: 1100px) calc(100vw - 350px), 100vw\"";
+
+    // TODO: add Sizes attribute that matches display width
+    // $markup .= " sizes=\"(min-width: 960px) calc((100vw - 350px) / 2), (min-width: 1100px) calc(100vw - 350px), 100vw\"";
 
     $i=0;
     foreach (THUMB_SIZES as $size) :

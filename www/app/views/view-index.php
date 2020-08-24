@@ -19,7 +19,7 @@
         <li class="view-index__item">
             <a class="view-index__item-link" href="?a=<?php echo $album["id"];?>">
                 <span class="view-index__album-title"><?php echo $album["display_title"]; ?></span>
-                <span class="view-index__album-date"><?php echo $album["display_date"]; ?></span>
+                <span class="view-index__album-info"><?php echo $album["display_date"]; ?> • <?php echo $album["album_asset_count"]; ?> items</span>
             </a>
         </li>
 

@@ -31,10 +31,9 @@
 }
 
 
-.view-index__album-date {
-  font-size: 18px;
+.view-index__album-info {
   font-weight: 400;
-  opacity: 0.7;
-  margin-left: 20px;
+  margin-left: 1em;;
+  opacity: 0.5;
 }
 
