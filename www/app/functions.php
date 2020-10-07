@@ -30,7 +30,7 @@ function get_file_contents($text_file_path)
 
 function string_to_title($str)
 {
-    return ucwords(str_replace('-', ' ', $str));
+    return str_replace('-', ' ', $str);
 }
 
 
