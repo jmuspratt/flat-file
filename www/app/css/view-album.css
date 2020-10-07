@@ -44,8 +44,6 @@
   max-width: 100%;
 }
 
-
-
 /* Media queries */
 
 @media ( min-width: 960px) {
@@ -63,7 +61,6 @@
   .view-album__section-heading:first-child {
     padding-top: 100px;
   }
-
 
   .view-album__grid {
     display: grid;

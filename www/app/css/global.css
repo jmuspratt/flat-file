@@ -38,7 +38,6 @@ body {
   font: var(--f-base);
   margin: 0;
   padding: 0;
-
 }
 
 a,
@@ -46,7 +45,6 @@ a:link {
   color: var(--c-base-text-color);
   text-decoration: none;
 }
-
 
 figure {
   display: block;
@@ -84,8 +82,6 @@ td {
   background: rgba(255,255,255, .1);
 }
 
-
-
 .page-header {
   padding: 20px var(--site-padding) 0;
   display: flex;
@@ -102,9 +98,7 @@ td {
   display: inline-block;
 }
 
-
 @media ( min-width: 960px) {
-
   .page-content {
     margin: 0 auto;
     max-width: var(--site-max);
@@ -116,9 +110,7 @@ td {
     z-index: 3;
     width: 100%;
   }
-
 }
-
 
 .site-footer {
   margin: 0 auto;
@@ -131,6 +123,6 @@ td {
 }
 
 .site-credit a {
-  color: var(--c-gray);
   border-bottom: 1px solid var(--c-gray);
+  color: var(--c-gray);
 }
