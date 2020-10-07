@@ -4,111 +4,6 @@
   position: relative;
 }
 
-.view-album__dropdown {
-  border: 1.5px solid #000;
-  border-radius: 25px;
-  font-weight: 400;
-  max-height: 50px;
-  overflow: hidden;
-  padding: 5px 20px;
-  position: relative;
-  transition: max-height 0.5s ease;
-}
-
-.view-album__dropdown:hover {
-  background-color: var(--c-bg);
-  overflow: auto;
-  max-height: none;
-}
-
-/* arrow */
-.view-album__dropdown::after {
-  border-bottom: solid 2px black;
-  border-right: solid 2px black;
-  content: '';
-  display: block;
-  height: 10px;
-  position: absolute;
-  right: 20px;
-  top: 14px;
-  transform: rotate(45deg);
-  width: 10px;
-}
-
-
-.view-album__dropdown-list {
-  list-style: none;
-  margin: 0;
-  padding: 0 30px 0 0 ;
-  transition: transform 0.5s ease;
-}
-
-.view-album__dropdown-list--current-1 {
-  transform: translateY(calc(1 * -50px));
-}
-
-.view-album__dropdown-list--current-2 {
-  transform: translateY(calc(2 * -50px));
-}
-
-.view-album__dropdown-list--current-3 {
-  transform: translateY(calc(3 * -50px));
-}
-
-.view-album__dropdown-list--current-4 {
-  transform: translateY(calc(4 * -50px));
-}
-
-.view-album__dropdown-list--current-5 {
-  transform: translateY(calc(5 * -50px));
-}
-
-.view-album__dropdown-list--current-6{
-  transform: translateY(calc(6 * -50px));
-}
-
-.view-album__dropdown-list--current-7 {
-  transform: translateY(calc(7 * -50px));
-}
-
-.view-album__dropdown-list--current-8 {
-  transform: translateY(calc(8 * -50px));
-}
-
-.view-album__dropdown-list--current-9 {
-  transform: translateY(calc(9 * -50px));
-}
-
-.view-album__dropdown-list--current-10 {
-  transform: translateY(calc(10 * -50px));
-}
-
-.view-album__dropdown:hover .view-album__dropdown-list {
-  transform: translateY(0) !important;
-}
-
-.view-album__dropdown:hover .view-album__dropdown-item:not(.view-album__dropdown-item--current) .view-album__dropdown-link{
-  color: gray;
-}
-
-.view-album__dropdown-item {
-  display: block;
-  height: 50px;
-}
-
-.view-album__dropdown-link {
-  color: black;
-  display: block;
-  font-size: var(--f-size-big);
-  font-weight: 400;
-  position: relative;
-}
-
-.view-album__dropdown-link:hover {
-  color: black !important;
-}
-
-
 .page-content {
   padding: 0 var(--site-padding);
 }
@@ -149,8 +44,6 @@
   max-width: 100%;
 }
 
-
-
 /* Media queries */
 
 @media ( min-width: 960px) {
@@ -168,7 +61,6 @@
   .view-album__section-heading:first-child {
     padding-top: 100px;
   }
-
 
   .view-album__grid {
     display: grid;

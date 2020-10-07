@@ -26,8 +26,5 @@ endif;
 
 ?>
 
-
-
-
 </body>
 </html>

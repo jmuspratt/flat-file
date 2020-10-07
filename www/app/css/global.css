@@ -2,6 +2,7 @@
   --c-bg: #fff;
   --c-base-text-color: #000;
   --c-base-link-color: blue;
+  --c-gray: #cfcfcf;
   --c-border: rgba(0, 0, 0, 0.2);
   --f-base: 16px / 1.375 Arial, sans-serif;
   --f-size-big: clamp(1.25rem, 2vw, 1.8rem);
@@ -37,7 +38,6 @@ body {
   font: var(--f-base);
   margin: 0;
   padding: 0;
-
 }
 
 a,
@@ -45,7 +45,6 @@ a:link {
   color: var(--c-base-text-color);
   text-decoration: none;
 }
-
 
 figure {
   display: block;
@@ -83,10 +82,6 @@ td {
   background: rgba(255,255,255, .1);
 }
 
-
-
-
-
 .page-header {
   padding: 20px var(--site-padding) 0;
   display: flex;
@@ -98,13 +93,12 @@ td {
   font-size: var(--f-size-big);
   font-weight: 400;
 }
+
 .page-header___site-name-link {
   display: inline-block;
 }
 
-
 @media ( min-width: 960px) {
-
   .page-content {
     margin: 0 auto;
     max-width: var(--site-max);
@@ -116,9 +110,7 @@ td {
     z-index: 3;
     width: 100%;
   }
-
 }
-
 
 .site-footer {
   margin: 0 auto;
@@ -127,9 +119,10 @@ td {
 }
 
 .site-credit {
-  opacity: 0.5;
+  color: var(--c-gray);
 }
 
 .site-credit a {
-  border-bottom: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-gray);
+  color: var(--c-gray);
 }
