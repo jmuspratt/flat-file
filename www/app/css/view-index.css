@@ -27,13 +27,13 @@
   display: block;
   padding: 10px 0 15px;
   text-decoration: none;
+  font-size: var(--f-size-medium);
   font-weight: 400;
 }
 
 
 .view-index__album-info {
+  color: var(--c-gray);
   font-weight: 400;
-  margin-left: 1em;;
-  opacity: 0.5;
 }
 

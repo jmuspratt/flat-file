@@ -17,24 +17,31 @@
                 <?php echo SITE_NAME; ?>
             </a>
         </h1>
-        <div class="view-album__dropdown">
-            <ul class="view-album__dropdown-list view-album__dropdown-list--current-<?php echo $current_index; ?>" data-current="<?php echo $current_index; ?>">
-            <?php foreach ($all_albums as $album_item) :
-                $is_current_album = $album_item["id"] == $album_info['id'];
-                $item_class = "view-album__dropdown-item";
+        <nav class="album-nav">
 
-                if ($is_current_album) :
-                    $item_class .= ' view-album__dropdown-item--current' ;
-                endif;
-                ?>
-                <li class="<?php echo $item_class; ?>">
-                    <a class="view-album__dropdown-link" href="<?php echo $album_item["url"]; ?>">
-                        <?php echo $album_item["display_title"]; ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-            </ul>
-        </div>
+            <button class="album-nav__toggle js-album-nav-toggle"><?php echo $album_info['display_title']; ?></button>
+
+            <div class="album-nav__curtain js-album-nav-curtain"></div>
+
+            <div class="album-nav__content">
+                <ul class="album-nav__list album-nav__list--current-<?php echo $current_index; ?>" data-current="<?php echo $current_index; ?>">
+                <?php foreach ($all_albums as $album_item) :
+                    $is_current_album = $album_item["id"] == $album_info['id'];
+                    $item_class = "album-nav__item";
+
+                    if ($is_current_album) :
+                        $item_class .= ' album-nav__item--current' ;
+                    endif;
+                    ?>
+                    <li class="<?php echo $item_class; ?>">
+                        <a class="album-nav__link" href="<?php echo $album_item["url"]; ?>">
+                            <?php echo $album_item["display_title"]; ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <section class="page-content">
