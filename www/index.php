@@ -29,7 +29,7 @@ endif;
     ?>
 
     <footer class="site-footer">
-        <p class="site-credit">Built with <a href="https://github.com/jmuspratt/flat-file">Flat File</p>
+        <p class="site-credit">Built with <a href="https://github.com/jmuspratt/flat-file">Flat File</a></p>
     </footer>
 
     <script src="app/js/scripts.js"></script>
