@@ -231,6 +231,17 @@ function video_src($video_path)
     return $resized_url;
 }
 
+function get_biggest_thumb_url($img_path)
+{
+    $file_name = pathinfo($img_path)['filename'];
+    $file_dir = pathinfo($img_path)['dirname'];
+    $file_ext = pathinfo($img_path)['extension'];
+    $cache_dir = ALBUMS_DIR_PROCESSED . '/' . basename($file_dir) . '/';
+    $url = ROOT_URL . '/' . $cache_dir . $file_name . '__' . THUMB_LARGEST . '.' . $file_ext;
+    return $url;
+}
+
+
 function responsive_img_markup($img_path)
 {
     $ratio = null;
@@ -269,8 +280,12 @@ function responsive_img_markup($img_path)
 
     $markup .= "<img loading=\"lazy\" class=\"$classes\"" ;
 
-    // TODO: add Sizes attribute that matches display width
-    // $markup .= " sizes=\"(min-width: 960px) calc((100vw - 350px) / 2), (min-width: 1100px) calc(100vw - 350px), 100vw\"";
+    // Assume the image is getting the large treatment
+    // TODO: alternate sizes for half-width images
+    $markup .= " sizes=\"(min-width: 1200px) 1140px, (min-width: 960px) calc((100vw - 40px)), calc(100vw - 40px)\"";
+
+
+    $markup .= " alt=\"$file_name\"";
 
     $i=0;
     foreach (THUMB_SIZES as $size) :
