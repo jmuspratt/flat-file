@@ -119,6 +119,20 @@ function generate_video($src_path, $verbose = false)
             'ffmpeg.binaries'  => FFMPEG_DIR . '/ffmpeg',
             'ffprobe.binaries' => FFMPEG_DIR . '/ffprobe'
         ]);
+
+
+        $ffprobe = FFMpeg\FFProbe::create();
+
+        // Get video's aspect ratio
+        $stream = $ffprobe->streams($src_path)->videos()->first();
+        $video_width = $stream->get('width');
+        $video_height = $stream->get('height');
+        $video_aspect = $video_width / $video_height;
+
+        $output_video_height = VIDEO_HEIGHT;
+        $output_video_width = VIDEO_HEIGHT * $video_aspect;
+
+
         if ($ffmpeg) :
             $video = $ffmpeg->open($src_path);
             // Avoid an Uncaught Exception error by passing in codecs:
@@ -129,7 +143,7 @@ function generate_video($src_path, $verbose = false)
                 ->setKiloBitrate(2500)
                 ->setAudioChannels(2)
                 ->setAudioKiloBitrate(256);
-            $video->filters()->resize(new FFMpeg\Coordinate\Dimension(1280, 720))->synchronize();
+            $video->filters()->resize(new FFMpeg\Coordinate\Dimension($output_video_width, $output_video_height))->synchronize();
             $video->save($format, $dest_path);
         else :
             echo ("FFMPEG or PHP-FFMPEG not installed");
