@@ -24,3 +24,7 @@ define("OUTPUT_DATE_FORMAT", 'F j, Y'); // January 1, 2020
 //  Widths of image sizes to be generated from originals
 define("THUMB_SIZES", [ 900, 1800, 2700, 3600 ]);
 define("THUMB_LARGEST", "3600");
+
+// Height of videos to be generated
+//(source aspect ratio will bepreserved)
+define("VIDEO_HEIGHT", 720);
