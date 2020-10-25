@@ -56,10 +56,10 @@ Flat File creates web galleries from directories of images, video and text files
 - [x] Separate asset processing from display code and run asynchronously ()
 - [x] Improve display of headings on mobile
 - [x] Add UI to step through albums from album view (done as dropdown)
+- [x] Honor non-16×9 video aspect ratios when processing
 
 ### To Do
 - [ ] On click, show enlarged images and video (with audio on) in a modal
-- [ ] Honor non-16×9 video aspect ratios when processing
 - [ ] Enhance index page with thumbnails
 
 ### Maybe

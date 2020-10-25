@@ -114,14 +114,14 @@ function generate_video($src_path, $verbose = false)
         endif;
 
 
-        // $ffmpeg = \FFMpeg\FFMpeg::create();
         $ffmpeg = \FFMpeg\FFMpeg::create([
             'ffmpeg.binaries'  => FFMPEG_DIR . '/ffmpeg',
             'ffprobe.binaries' => FFMPEG_DIR . '/ffprobe'
         ]);
-
-
-        $ffprobe = FFMpeg\FFProbe::create();
+        $ffprobe = FFMpeg\FFProbe::create([
+            'ffmpeg.binaries'  => FFMPEG_DIR . '/ffmpeg',
+            'ffprobe.binaries' => FFMPEG_DIR . '/ffprobe'
+        ]);
 
         // Get video's aspect ratio
         $stream = $ffprobe->streams($src_path)->videos()->first();
@@ -129,6 +129,7 @@ function generate_video($src_path, $verbose = false)
         $video_height = $stream->get('height');
         $video_aspect = $video_width / $video_height;
 
+        // Set output video dimensions
         $output_video_height = VIDEO_HEIGHT;
         $output_video_width = VIDEO_HEIGHT * $video_aspect;
 
