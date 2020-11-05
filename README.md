@@ -1,6 +1,6 @@
 # 📸 Flat File
 
-Flat File creates web galleries from directories of images, video and text files. There's no CMS or admin — just sFTP and date-based file-naming conventions. Built with PHP, [Ups-dock](http://github.com/Upstatement/ups-dock), and vanilla CSS.
+Flat File creates web galleries from directories of images, video and text files. There's no CMS or admin — just sFTP and date-based file-naming conventions. Built with PHP, [Ups-dock](http://github.com/Upstatement/ups-dock), and vanilla CSS/JS.
 
 ![](screenshots/sftp.png)
 
