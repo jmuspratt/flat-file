@@ -64,4 +64,4 @@ Flat File creates web galleries from directories of images, video and text files
 
 ### Maybe
 - [ ] Option to use EXIF data for sorting media by date?
-- [ ] Option to hide album listing and just show most recent album at index page
+- [ ] Option to hide album listing and just show most recent album as the index page
