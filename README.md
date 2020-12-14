@@ -40,7 +40,7 @@ Flat File creates web galleries from directories of images, video and text files
 ## In use
 1. Create a new folder locally with a date-based prefix defined in config.php (default is `YYYY-MM-DD-My-Album-Name`)
 2. Export your images using the date-based-prefix. [Exiftool](https://exiftool.org) and [a shell script](https://gist.github.com/jmuspratt/3680d45b0c12f8b32093) are useful here if your local photo software doesn't give you enough flexibility.
-3. Insert any text files to serve as headings above a group of photos, using a date-based prefix to position the heading where you want in the alphabetical file sequence . Something like `2020-05-01-Hiking-in-the-alps.txt` will render as `Hiking in the Alps` right before images and videos prefixed with `2020-05-01-`... You can also add secondary text in the contents of the text file.
+3. Within an album, add text files to serve as headings above a group of photos, using a date-based prefix to position the heading where you want in the alphabetical file sequence. A file named `2020-05-01-Hiking-in-the-alps.txt` will render as `Hiking in the Alps` right before images and videos prefixed with `2020-05-01-`... You can also add secondary text in the contents of the text file.
 4. Visit your site, click the album, and wait for media processing to complete. Subsequent page views will be much faster.
 
 ## Development progress
