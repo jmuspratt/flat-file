@@ -44,6 +44,7 @@
         </nav>
 
         <div class="lightbox">
+            <button class="lightbox__close"></button>
             <div class="lightbox__curtain"></div>
             <div class="lightbox__content"></div>
         </div>

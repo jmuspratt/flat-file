@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
       isEscape = (evt.keyCode === 27);
     }
     if (isEscape) {
-      body.classList.remove('js-album-nav-shown', 'js-lightbox-shown');
-      lightboxContent.innerHTML = '';
+      body.classList.remove('js-album-nav-shown');
+      closeLightBox();
     }
   };
 
@@ -34,14 +34,23 @@ document.addEventListener("DOMContentLoaded", function() {
   const lightboxTriggers = document.querySelectorAll('.js-lightbox-trigger');
   const lightboxCurtain  = document.querySelector('.lightbox__curtain');
   const lightboxContent  = document.querySelector('.lightbox__content');
+  const lightboxClose  = document.querySelector('.lightbox__close');
 
 
+  function closeLightBox() {
+    body.classList.remove('js-lightbox-shown');
+    lightboxContent.innerHTML = '';
+  }
 
   // Clicking background curtain closes lightbox
   lightboxCurtain.addEventListener('click', (e) => {
-    body.classList.remove('js-lightbox-shown');
-    lightboxContent.innerHTML = '';
+    closeLightBox();
   });
+
+  lightboxClose.addEventListener('click', (e) => {
+    closeLightBox();
+  });
+
 
   lightboxTriggers.forEach(item=>{
 
