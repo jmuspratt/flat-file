@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const body = document.querySelector('body');
   const albumNavCurtain = document.querySelector('.js-album-nav-curtain');
   const albumNavToggle = document.querySelector('.js-album-nav-toggle');
-  const lightboxTriggers = document.querySelectorAll('.js-lightbox-trigger');
+
 
   // Clicking btn toggles album nav
   albumNavToggle.addEventListener('click', (e) => {
@@ -25,21 +25,41 @@ document.addEventListener("DOMContentLoaded", function() {
       isEscape = (evt.keyCode === 27);
     }
     if (isEscape) {
-      body.classList.remove('js-album-nav-shown');
+      body.classList.remove('js-album-nav-shown', 'js-lightbox-shown');
+      lightboxContent.innerHTML = '';
     }
   };
 
   // Click an image/video to expand
+  const lightboxTriggers = document.querySelectorAll('.js-lightbox-trigger');
+  const lightboxCurtain  = document.querySelector('.lightbox__curtain');
+  const lightboxContent  = document.querySelector('.lightbox__content');
+
+
+
+  // Clicking background curtain closes lightbox
+  lightboxCurtain.addEventListener('click', (e) => {
+    body.classList.remove('js-lightbox-shown');
+    lightboxContent.innerHTML = '';
+  });
+
   lightboxTriggers.forEach(item=>{
+
     item.addEventListener('click', (e) => {
+      body.classList.add('js-lightbox-shown');
+
       e.preventDefault();
       const target = e.target;
       console.log(target.tagName);
 
       if (target.tagName == 'IMG') {
+        const duplicateImg = target.cloneNode(true);
+        console.log('dupe', duplicateImg);
+        lightboxContent.appendChild(duplicateImg);
       }
 
       if (target.tagName == 'VIDEO') {
+
         const source = target.querySelector('source').getAttribute('src');
 
         const markup = `
@@ -47,7 +67,8 @@ document.addEventListener("DOMContentLoaded", function() {
           <source src="${source}" />
         </video>
         `;
-        console.log(markup);
+
+        lightboxContent.innerHTML = markup;
       }
 
     });

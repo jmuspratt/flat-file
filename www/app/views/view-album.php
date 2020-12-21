@@ -42,6 +42,11 @@
                 </ul>
             </div>
         </nav>
+
+        <div class="lightbox">
+            <div class="lightbox__curtain"></div>
+            <div class="lightbox__content"></div>
+        </div>
     </header>
 
     <section class="page-content">
