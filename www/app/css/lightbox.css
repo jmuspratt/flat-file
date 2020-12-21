@@ -19,7 +19,6 @@
   background: var(--c-bg);
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.12);
   height: 100vh;
-
   left: 0;
   overflow: auto;
   position: fixed;
@@ -30,9 +29,10 @@
 }
 
 .lightbox__content {
-
-  height: auto;
-  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  width: 100%;
+  padding: 20px;
   position: relative;
   z-index: 4;
 }
@@ -40,6 +40,9 @@
 .lightbox__content img,
 .lightbox__content video {
   display: block;
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
 }
 
 .js-lightbox-shown .lightbox {
