@@ -16,7 +16,7 @@
 
 
 .lightbox__curtain {
-  background: var(--c-bg);
+  background-color: black;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.12);
   height: 100vh;
   left: 0;
