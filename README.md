@@ -66,5 +66,6 @@ Flat File creates web galleries from directories of images, video and text files
 - [ ] Add meta tags to album pages
 
 ### Maybe
+- [ ] In album view, add correct `<title>` and other helpful meta tags.
 - [ ] Option to use EXIF data for sorting media by date?
 - [ ] Option to hide album listing and just show most recent album as the index page
