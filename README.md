@@ -42,6 +42,7 @@ Flat File creates web galleries from directories of images, video and text files
 2. Export your images using the date-based-prefix. [Exiftool](https://exiftool.org) and [a shell script](https://gist.github.com/jmuspratt/3680d45b0c12f8b32093) are useful here if your local photo software doesn't give you enough flexibility.
 3. Within an album, add text files to serve as headings above a group of photos, using a date-based prefix to position the heading where you want in the alphabetical file sequence. A file named `2020-05-01-Hiking-in-the-alps.txt` will render as `Hiking in the Alps` right before images and videos prefixed with `2020-05-01-`... You can also add secondary text in the contents of the text file.
 4. Visit your site, click the album, and wait for media processing to complete. Subsequent page views will be much faster.
+5. [rsync](https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories) is a great way to sync local albums with your server. To push new photos up and delete anything on the remote server that's local, while preserving file permissions, use something like `rsync -apzP --delete --filter=":- .gitignore" ~/Sites/flat-file/www/albums/ user@123.456.789:/var/www/photos.example.com/html/albums/`
 
 ## Development progress
 
@@ -60,7 +61,9 @@ Flat File creates web galleries from directories of images, video and text files
 - [x] On click, show enlarged images and video (with audio on) in a modal
 
 ### To Do
-- [ ] Enhance index page with thumbnails
+- [ ] Modal lightbox: add photo date, fix tab focus behavior
+- [ ] Enhance index page: thumbnails?
+- [ ] Add meta tags to album pages
 
 ### Maybe
 - [ ] Option to use EXIF data for sorting media by date?
