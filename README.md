@@ -61,11 +61,9 @@ Flat File creates web galleries from directories of images, video and text files
 - [x] On click, show enlarged images and video (with audio on) in a modal
 
 ### To Do
-- [ ] Modal lightbox: add photo date, fix tab focus behavior
-- [ ] Enhance index page: thumbnails?
-- [ ] Add meta tags to album pages
-
-### Maybe
+- [ ] Modal lightbox: add photo date, fix tab focus behavior, add `max-height: 100vh`
 - [ ] In album view, add correct `<title>` and other helpful meta tags.
+- [ ] Enhance index page: thumbnails?
+### Maybe
 - [ ] Option to use EXIF data for sorting media by date?
 - [ ] Option to hide album listing and just show most recent album as the index page
