@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const body = document.querySelector('body');
   const albumNavCurtain = document.querySelector('.js-album-nav-curtain');
   const albumNavToggle = document.querySelector('.js-album-nav-toggle');
+  const albumNavClose = document.querySelector('.js-album-nav-close');
 
 
   // Clicking btn toggles album nav
@@ -12,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Clicking background "curtain" closes album nav
   albumNavCurtain.addEventListener('click', (e) => {
+    body.classList.remove('js-album-nav-shown');
+  });
+
+  albumNavClose.addEventListener('click', (e) => {
     body.classList.remove('js-album-nav-shown');
   });
 
@@ -32,9 +37,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Click an image/video to expand
   const lightboxTriggers = document.querySelectorAll('.js-lightbox-trigger');
-  const lightboxCurtain  = document.querySelector('.lightbox__curtain');
   const lightboxContent  = document.querySelector('.lightbox__content');
-  const lightboxClose  = document.querySelector('.lightbox__close');
+  const lightboxClosers  = document.querySelectorAll('.js-lightbox-close');
 
 
   function closeLightBox() {
@@ -42,28 +46,26 @@ document.addEventListener("DOMContentLoaded", function() {
     lightboxContent.innerHTML = '';
   }
 
-  // Clicking background curtain closes lightbox
-  lightboxCurtain.addEventListener('click', (e) => {
-    closeLightBox();
-  });
-
-  lightboxClose.addEventListener('click', (e) => {
-    closeLightBox();
+  // Clicking a closer closes lightbox
+  lightboxClosers.forEach(closer=>{
+    closer.addEventListener('click', (e) => {
+      closeLightBox();
+    });
   });
 
 
   lightboxTriggers.forEach(item=>{
+
+    console.log('adding', item);
 
     item.addEventListener('click', (e) => {
       body.classList.add('js-lightbox-shown');
 
       e.preventDefault();
       const target = e.target;
-      console.log(target.tagName);
 
       if (target.tagName == 'IMG') {
         const duplicateImg = target.cloneNode(true);
-        console.log('dupe', duplicateImg);
         lightboxContent.appendChild(duplicateImg);
       }
 

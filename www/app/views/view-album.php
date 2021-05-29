@@ -24,6 +24,7 @@
             <div class="album-nav__curtain js-album-nav-curtain"></div>
 
             <div class="album-nav__content">
+                <button class="album-nav__close js-album-nav-close"></button>
                 <ul class="album-nav__list album-nav__list--current-<?php echo $current_index; ?>" data-current="<?php echo $current_index; ?>">
                 <?php foreach ($all_albums as $album_item) :
                     $is_current_album = $album_item["id"] == $album_info['id'];
@@ -44,8 +45,8 @@
         </nav>
 
         <div class="lightbox">
-            <button class="lightbox__close"></button>
-            <div class="lightbox__curtain"></div>
+            <button class="lightbox__close js-lightbox-close"></button>
+            <div class="lightbox__curtain js-lightbox-close"></div>
             <div class="lightbox__content"></div>
         </div>
     </header>

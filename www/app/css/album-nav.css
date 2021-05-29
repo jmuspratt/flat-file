@@ -60,6 +60,43 @@
   z-index: 3;
 }
 
+
+.album-nav__close {
+  appearance: none;
+  background-color: transparent;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  height: 35px;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  z-index: 6;
+  width: 35px;
+}
+
+.album-nav__close::before,
+.album-nav__close::after {
+  background-color:  black;
+  content: '';
+  display: block;
+  height: 1px;
+  left: 5px;
+  position: absolute;
+  top: 15px;
+  width: 20px;
+}
+
+.album-nav__close::before {
+  transform: rotate(45deg);
+}
+
+.album-nav__close::after {
+  transform: rotate(-45deg);
+}
+
+
 .js-album-nav-shown .album-nav__content {
   opacity: 1;
   pointer-events: all;
@@ -70,6 +107,7 @@
   font-size: var(--f-size-medium);
   list-style: none;
   margin: 0;
+  padding: 40px 20px;
 }
 
 .album-nav__item {
