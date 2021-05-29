@@ -80,7 +80,8 @@ function get_album_info_from_id($album_id)
     return $album_info;
 }
 
-function get_albums($path) {
+function get_albums($path)
+{
     $albums = [];
     foreach (glob($path . "/*", GLOB_ONLYDIR) as $dir_full_path) :
         $album_id = basename($dir_full_path);
@@ -144,7 +145,14 @@ function generate_video($src_path, $verbose = false)
                 ->setKiloBitrate(5000)
                 ->setAudioChannels(2)
                 ->setAudioKiloBitrate(256);
-            $video->filters()->resize(new FFMpeg\Coordinate\Dimension($output_video_width, $output_video_height))->synchronize();
+
+            $video
+                ->filters()
+                ->resize(new FFMpeg\Coordinate\Dimension(
+                    $output_video_width,
+                    $output_video_height
+                )
+                )->synchronize();
             $video->save($format, $dest_path);
         else :
             echo ("FFMPEG or PHP-FFMPEG not installed");
@@ -154,7 +162,6 @@ function generate_video($src_path, $verbose = false)
             echo ("✅ File already exists");
         endif;
     endif;
-
 }
 
 // https://davidwalsh.name/create-image-thumbnail-php
@@ -328,5 +335,3 @@ function responsive_img_markup($img_path)
 
     return $markup;
 }
-
-
