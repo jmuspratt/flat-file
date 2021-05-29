@@ -126,3 +126,7 @@ td {
   border-bottom: 1px solid var(--c-gray);
   color: var(--c-gray);
 }
+
+.site-credit a:hover {
+  color: var(--c-base-text-color);
+}

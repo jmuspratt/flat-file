@@ -10,9 +10,15 @@
 
 .view-index__list {
   list-style: none;
-  margin: 0;
-  padding: 40px 20px 40px;
+  margin: 0 auto;
+  padding: 40px 0;
  }
+ @media ( min-width: 960px) {
+  .view-index__list {
+    width: 50%;
+    padding-top: 120px;
+  }
+}
 
 .view-index__item {
   border-bottom: 1px solid var(--c-light-white);
@@ -25,10 +31,14 @@
 
 .view-index__item-link {
   display: block;
-  padding: 10px 0 15px;
+  padding: .375em 0;
   text-decoration: none;
   font-size: var(--f-size-medium);
   font-weight: 400;
+}
+
+.view-index__item-link:hover {
+  color: var(--c-gray);
 }
 
 
