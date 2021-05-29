@@ -56,8 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
   lightboxTriggers.forEach(item=>{
 
-    console.log('adding', item);
-
     item.addEventListener('click', (e) => {
       body.classList.add('js-lightbox-shown');
 
