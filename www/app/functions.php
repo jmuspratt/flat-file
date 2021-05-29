@@ -141,7 +141,7 @@ function generate_video($src_path, $verbose = false)
             $format = new \FFMpeg\Format\Video\X264('aac', 'libx264');
 
             $format
-                ->setKiloBitrate(2500)
+                ->setKiloBitrate(5000)
                 ->setAudioChannels(2)
                 ->setAudioKiloBitrate(256);
             $video->filters()->resize(new FFMpeg\Coordinate\Dimension($output_video_width, $output_video_height))->synchronize();
