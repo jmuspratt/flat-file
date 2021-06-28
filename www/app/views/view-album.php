@@ -12,38 +12,39 @@
     ?>
 
     <header class="page-header">
-        <h1 class="page-header___site-name">
-            <a class="page-header___site-name-link" href="<?php echo ROOT_URL; ?>">
-                <?php echo SITE_NAME; ?>
-            </a>
-        </h1>
-        <nav class="album-nav">
+        <div class="page-header__inner">
+            <h1 class="page-header___site-name">
+                <a class="page-header___site-name-link" href="<?php echo ROOT_URL; ?>">
+                    <?php echo SITE_NAME; ?>
+                </a>
+            </h1>
+            <nav class="album-nav">
 
-            <button class="album-nav__toggle js-album-nav-toggle"><?php echo $album_info['display_title']; ?></button>
+                <button class="album-nav__toggle js-album-nav-toggle"><?php echo $album_info['display_title']; ?></button>
 
-            <div class="album-nav__curtain js-album-nav-curtain"></div>
+                <div class="album-nav__curtain js-album-nav-curtain"></div>
 
-            <div class="album-nav__content">
-                <button class="album-nav__close js-album-nav-close"></button>
-                <ul class="album-nav__list album-nav__list--current-<?php echo $current_index; ?>" data-current="<?php echo $current_index; ?>">
-                <?php foreach ($all_albums as $album_item) :
-                    $is_current_album = $album_item["id"] == $album_info['id'];
-                    $item_class = "album-nav__item";
+                <div class="album-nav__content">
+                    <button class="album-nav__close js-album-nav-close"></button>
+                    <ul class="album-nav__list album-nav__list--current-<?php echo $current_index; ?>" data-current="<?php echo $current_index; ?>">
+                    <?php foreach ($all_albums as $album_item) :
+                        $is_current_album = $album_item["id"] == $album_info['id'];
+                        $item_class = "album-nav__item";
 
-                    if ($is_current_album) :
-                        $item_class .= ' album-nav__item--current' ;
-                    endif;
-                    ?>
-                    <li class="<?php echo $item_class; ?>">
-                        <a class="album-nav__link" href="<?php echo $album_item["url"]; ?>">
-                            <?php echo $album_item["display_title"]; ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-                </ul>
-            </div>
-        </nav>
-
+                        if ($is_current_album) :
+                            $item_class .= ' album-nav__item--current' ;
+                        endif;
+                        ?>
+                        <li class="<?php echo $item_class; ?>">
+                            <a class="album-nav__link" href="<?php echo $album_item["url"]; ?>">
+                                <?php echo $album_item["display_title"]; ?>
+                            </a>
+                        </li>
+                    <?php endforeach; ?>
+                    </ul>
+                </div>
+            </nav>
+        </div>
         <div class="lightbox">
             <button class="lightbox__close js-lightbox-close"></button>
             <div class="lightbox__curtain js-lightbox-close"></div>

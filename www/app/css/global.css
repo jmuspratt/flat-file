@@ -8,8 +8,8 @@
   --f-size-big: clamp(1rem, 2vw, 1.8rem);
   --f-size-medium: clamp(1rem, 2vw, 1.375rem);
   --sidebar-width: 350px;
-  --site-padding: 5px;
-  --site-max: 1200px;
+  --site-padding: 10px;
+  --site-max: 2000px;
 }
 
 @media ( min-width: 400px) {
@@ -83,10 +83,16 @@ td {
 }
 
 .page-header {
-  padding: 20px var(--site-padding) 20px;
+  position: relative;
+}
+
+.page-header__inner {
+  align-items: baseline;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  padding: 20px var(--site-padding) 20px;
+  margin: 0 auto;
+  max-width: var(--site-max);
 }
 
 .page-header___site-name {
@@ -106,6 +112,7 @@ td {
 
   .page-header {
     position: fixed;
+    left: 0;
     top: 0;
     z-index: 3;
     width: 100%;

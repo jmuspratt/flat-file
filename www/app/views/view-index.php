@@ -3,11 +3,14 @@
 <div class="view-index view">
 
     <header class="page-header">
-        <h1 class="page-header___site-name">
-            <a class="page-header___site-name-link" href="<?php echo ROOT_URL; ?>">
-                <?php echo SITE_NAME; ?>
-            </a>
-        </h1>
+        <div class="page-header__inner">
+
+            <h1 class="page-header___site-name">
+                <a class="page-header___site-name-link" href="<?php echo ROOT_URL; ?>">
+                    <?php echo SITE_NAME; ?>
+                </a>
+            </h1>
+        </div>
     </header>
 
     <section class="page-content">

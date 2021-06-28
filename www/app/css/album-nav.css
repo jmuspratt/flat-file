@@ -29,6 +29,12 @@
   position: relative;
 }
 
+.album-nav__toggle:focus,
+.album-nav__toggle:hover {
+  background-color: black;
+  color: white;
+}
+
 .album-nav__curtain {
   height: 100%;
   left: 0;
