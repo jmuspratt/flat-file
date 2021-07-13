@@ -28,6 +28,12 @@ function get_file_contents($text_file_path)
 }
 
 
+function slugify($string)
+{
+    return strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string), '-'));
+}
+
+
 function string_to_title($str)
 {
     return str_replace('-', ' ', $str);
