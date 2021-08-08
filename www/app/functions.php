@@ -56,6 +56,10 @@ function extract_date($album_dir_string, $input_date_format)
 {
     $prefix_length = date_format_length($input_date_format);
     $date_string = substr($album_dir_string, 0, $prefix_length);
+
+    echo ("<br />prefix length is " . $prefix_length);
+    echo ("<br /> date-string is " . $date_string);
+
     return format_date($date_string, $input_date_format, OUTPUT_DATE_FORMAT);
 }
 
@@ -70,8 +74,8 @@ function get_album_info_from_id($album_id)
 {
     $album_url = ROOT_URL . '/?a=' . $album_id;
     $album_path = ALBUMS_PATH . '/' . $album_id;
-    $album_title = extract_title($album_id, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
-    $album_date = extract_date($album_id, ALBUM_DATE_FORMAT, OUTPUT_DATE_FORMAT);
+    $album_title = extract_title($album_id, ALBUM_DATE_FORMAT);
+    $album_date = extract_date($album_id, ALBUM_DATE_FORMAT);
     $album_asset_count = count(get_album_assets($album_path));
 
     $album_info = array(
@@ -200,11 +204,16 @@ function get_album_assets($album_path)
             $filename = pathinfo($asset)["basename"];
             $extension = strtolower(pathinfo($asset, PATHINFO_EXTENSION));
             $type = get_file_type($extension);
+            $file_id = basename($filename);
+            echo ("file id is " . $file_id);
+
+            $display_date = extract_date($filename, FILE_DATE_FORMAT)  || 'fail';
             $url = ROOT_URL . '/' . ALBUMS_DIR . '/' . $album_id . '/' . $filename;
             $album_id = basename($album_path);
             $assets[] = array(
                 "album_id" => $album_id,
                 "extension" => $extension,
+                "display_date" => 'temp',
                 "filename" => $filename,
                 "file_type" => $type,
                 "path" => $asset,

@@ -26,7 +26,7 @@
 
                 <div class="album-nav__content">
                     <button class="album-nav__close js-album-nav-close"></button>
-                    <ul class="album-nav__list album-nav__list--current-<?php echo $current_index; ?>" data-current="<?php echo $current_index; ?>">
+                    <ul class="album-nav__list">
                     <?php foreach ($all_albums as $album_item) :
                         $is_current_album = $album_item["id"] == $album_info['id'];
                         $item_class = "album-nav__item";
@@ -67,11 +67,17 @@
 
                 <?php
                 if ($asset_info["file_type"] === 'video') : ?>
-                    <div class="view-album__item view-album__item--<?php echo $asset_info['file_type']; ?>">
+                    <div
+                      class="view-album__item view-album__item--<?php echo $asset_info['file_type']; ?>"
+                      data-date="<?php echo $asset_info['display_date']; ?>"
+                    ">
                         <?php include 'asset-video.php'; ?>
                     </div>
                 <?php elseif ($asset_info["file_type"] === 'image') : ?>
-                    <div class="view-album__item view-album__item--<?php echo $asset_info['file_type']; ?>">
+                    <div
+                      class="view-album__item view-album__item--<?php echo $asset_info['file_type']; ?>"
+                      data-date="<?php echo $asset_info['display_date']; ?>"
+                      >
                         <?php include 'asset-image.php'; ?>
                     </div>
                 <?php elseif ($asset_info["file_type"] === 'text') : ?>
