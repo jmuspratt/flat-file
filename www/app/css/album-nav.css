@@ -31,8 +31,7 @@
 
 .album-nav__toggle:focus,
 .album-nav__toggle:hover {
-  background-color: black;
-  color: white;
+  background-color: white;
 }
 
 .album-nav__curtain {
@@ -131,7 +130,31 @@
   position: relative;
 }
 
-.album-nav__item--current,
+.album-nav__item--current .album-nav__link {
+  position: relative;
+}
+
+.album-nav__item--current .album-nav__link::before {
+  background-color: black;
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 6px;
+  left: -1em;
+  margin-top: -4px;
+  position: absolute;
+  top: 50%;
+  width: 6px;
+}
+
 .album-nav__link:hover {
   color: var(--c-gray);
+}
+@media (min-width: 960px) {
+  .album-nav__item--current .album-nav__link::before {
+    height: 8px;
+    left: -0.875em;
+    margin-top: -5px;
+    width: 8px;
+  }
 }
